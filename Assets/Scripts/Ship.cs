@@ -1,4 +1,6 @@
 using UnityEngine;
+using Quaternion = UnityEngine.Quaternion;
+using Vector3 = UnityEngine.Vector3;
 
 public class Ship : MonoBehaviour
 {
@@ -8,6 +10,9 @@ public class Ship : MonoBehaviour
     [SerializeField] private float maxSpeedY = 10f;
     [SerializeField] private float decelerationY = 5f;
     [SerializeField] private float speedX = 0.01f;
+    [SerializeField] private float rollSpeed = 15;
+    [Range(-360, 360)] [SerializeField] private float rollMinDegrees = -45;
+    [Range(-360, 360)] [SerializeField] private float rollMaxDegrees = 45;
 
     private Rigidbody _rigidBody;
     private float _initDistance;
@@ -35,29 +40,52 @@ public class Ship : MonoBehaviour
     private void FixedUpdate()
     {
         var verticalMovement = Input.GetAxis("Vertical");
-        var newVelocity = _rigidBody.velocity;
 
-        MoveVertically(ref newVelocity, verticalMovement);
-        MoveForward(ref newVelocity);
+        #region MOVE_SHIP_VERTICALLY_AND_FORWARD
+        var velocity = MoveVertically(verticalMovement);
+        velocity = MoveForward(velocity);
+        velocity *= Time.fixedDeltaTime;
         
-        _rigidBody.MovePosition(_rigidBody.position + newVelocity * Time.fixedDeltaTime);
+        var from = _rigidBody.position;
+        var to = new Vector3((from + velocity).x, (from + velocity).y, from.z);
+        _rigidBody.MovePosition(to);
+        #endregion
+        
+        RollHorizontally(verticalMovement);
     }
 
-    private void MoveForward(ref Vector3 newVelocity)
+    private Vector3 MoveForward(Vector3 velocity)
     {
-        newVelocity += -transform.right.normalized * speedX; // -right is because the model is rotated by 180 degrees.
-        newVelocity.x = Mathf.Clamp(newVelocity.x, speedX, speedX);
+        return new Vector3(speedX, velocity.y, velocity.z);
     }
 
-    private void MoveVertically(ref Vector3 velocity, float verticalMovement)
+    private Vector3 MoveVertically(float verticalMovement)
     {
-        velocity += transform.up.normalized * (verticalMovement * accelerationY);
+        var velocity = _rigidBody.velocity + transform.up.normalized * (verticalMovement * accelerationY);
         velocity.y = Mathf.Clamp(velocity.y, -maxSpeedY, maxSpeedY);
-
+        
         if (verticalMovement == 0 && _rigidBody.velocity.magnitude > 0)
-        {
             velocity -= new Vector3(0, _rigidBody.velocity.normalized.y * decelerationY);
-        }
+
+        return velocity;
+    }
+
+    private void RollHorizontally(float verticalMovement)
+    {
+        var from = transform.rotation;
+        var fromEulerAngles = from.eulerAngles;
+        var to = verticalMovement switch
+        {
+            < 0 => new Vector3(rollMaxDegrees, fromEulerAngles.y, fromEulerAngles.z),
+            > 0 => new Vector3(rollMinDegrees, fromEulerAngles.y, fromEulerAngles.z),
+            _ => new Vector3(0F, fromEulerAngles.y, fromEulerAngles.z),
+        };
+
+        _rigidBody.MoveRotation(
+            Quaternion.RotateTowards(
+                from,
+                Quaternion.Euler(to),
+                rollSpeed * Time.fixedDeltaTime));
     }
 
     private void OnCollisionEnter(Collision collision)
