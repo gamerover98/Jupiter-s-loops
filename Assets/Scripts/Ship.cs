@@ -95,6 +95,6 @@ public class Ship : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Collisione navicella : " + other.gameObject.name);
+        Debug.Log("Ship collision: " + other.gameObject.name);
     }
 }
