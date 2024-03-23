@@ -88,8 +88,13 @@ public class Ship : MonoBehaviour
                 rollSpeed * Time.fixedDeltaTime));
     }
 
-    private void OnCollisionEnter(Collision collision)
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    Debug.Log("Collision detected with: " + collision.gameObject.name);
+    //}
+
+    private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Collision detected with: " + collision.gameObject.name);
+        Debug.Log("Collisione navicella : " + other.gameObject.name);
     }
 }
