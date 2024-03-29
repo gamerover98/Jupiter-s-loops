@@ -46,8 +46,8 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 20
-  m_Range: 50
+  m_Intensity: 30
+  m_Range: 25
   m_SpotAngle: 117.746
   m_InnerSpotAngle: 0
   m_CookieSize: 10
@@ -165,7 +165,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 0.3663286, b: 0, a: 1}
   m_Intensity: 20
-  m_Range: 5.5
+  m_Range: 1
   m_SpotAngle: 166
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -703,10 +703,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 0}
-  accelerationY: 30
-  maxSpeedY: 7.5
-  decelerationY: 1
-  speedX: 5
+  accelerationY: 20
+  maxSpeedY: 6.5
+  decelerationY: 15
+  speedX: 7.5
   rollSpeed: 250
   rollMinDegrees: -45
   rollMaxDegrees: 45
