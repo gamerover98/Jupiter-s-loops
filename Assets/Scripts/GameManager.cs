@@ -1,9 +1,10 @@
+using Environment.Entity;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public Ship ship;
+    public MonoShip ship;
 
     private void Awake()
     {
