@@ -3,7 +3,7 @@ using Environment.Collectible;
 
 namespace Environment
 {
-    public interface IBiome<out TPortal, out TCapsule>
+    public interface IBiome<out TPortal, out TCapsule, out TMeteor>
         where TPortal : IPortal
         where TCapsule : ICapsule
     {
@@ -12,5 +12,7 @@ namespace Environment
         TPortal GetExitPortal();
 
         IEnumerable<TCapsule> GetCapsules();
+
+        IEnumerable<TMeteor> GetMeteors();
     }
 }
