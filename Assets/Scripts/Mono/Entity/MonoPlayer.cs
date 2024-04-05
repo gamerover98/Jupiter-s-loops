@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Api.Entity;
+using UnityEngine;
 
-namespace Environment.Entity
+namespace Mono.Entity
 {
     public abstract class MonoPlayer : MonoBehaviour, IPlayer
     {

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using Environment.Collectible;
+using Api.Collectible;
 
-namespace Environment
+namespace Api
 {
     public interface IBiome<out TPortal, out TCapsule, out TMeteor>
         where TPortal : IPortal

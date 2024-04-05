@@ -2,7 +2,7 @@ using UnityEngine;
 using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
 
-namespace Environment.Entity
+namespace Mono.Entity
 {
     public class MonoShip : MonoPlayer
     {

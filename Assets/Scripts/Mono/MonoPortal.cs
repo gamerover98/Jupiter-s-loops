@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+﻿using Api;
+using Mono.Manager;
+using UnityEngine;
 
-namespace Environment
+namespace Mono
 {
     public class MonoPortal : MonoBehaviour, IPortal
     {
@@ -23,10 +25,10 @@ namespace Environment
         {
             if (portalType != PortalType.Entry) return;
 
-            var ship = GameManager.Instance!.ship;
-            var shipTransform = ship.transform;
+            var player = MonoGameManager.Instance!.GetPlayer();
+            var playerTransform = player.transform;
 
-            shipTransform.position = destinationPortal.transform.position;
+            playerTransform.position = destinationPortal.transform.position;
         }
     }
 }

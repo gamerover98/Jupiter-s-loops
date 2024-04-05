@@ -1,4 +1,4 @@
-﻿namespace Environment.Entity
+﻿namespace Api.Entity
 {
     public interface IEntity
     {

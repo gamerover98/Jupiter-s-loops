@@ -1,6 +1,6 @@
 ﻿using JetBrains.Annotations;
 
-namespace Environment
+namespace Api
 {
     public interface IPortal
     {

@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
-using Environment.Collectible;
-using Environment.Entity;
+using Api;
+using Mono.Collectible;
+using Mono.Entity;
 using UnityEngine;
 
-namespace Environment
+namespace Mono
 {
     public class MonoBiome : MonoBehaviour, IBiome<MonoPortal, MonoCapsule, MonoMeteor>
     {
