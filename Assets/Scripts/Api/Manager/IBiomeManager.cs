@@ -16,12 +16,9 @@ namespace Api.Manager
         /// <returns>An enumerable collection of biome settings.</returns>
         public IEnumerable<IBiomeSettings<TBiome, TPortal, TCapsule, TMeteor>> GetBiomesSettings();
 
-        /// <returns>A not-null random biome settings.</returns>
-        public TBiome GetRandomBiome();
-
         /// <summary>This is the biome where the player is.</summary>
         /// <returns>The not-null biome instance.</returns>
-        public TBiome GetCurrentBiome();
+        public IBiomeSettings<TBiome, TPortal, TCapsule, TMeteor> GetCurrentBiome();
 
         /// <summary>
         /// The next biome must be a different instance of the current biome.
@@ -33,7 +30,10 @@ namespace Api.Manager
         /// </para>
         /// </summary>
         /// <returns>The not-null biome instance.</returns>
-        public TBiome GetNextBiome();
+        public IBiomeSettings<TBiome, TPortal, TCapsule, TMeteor> GetNextBiome();
+
+        /// <returns>A not-null random biome settings.</returns>
+        public IBiomeSettings<TBiome, TPortal, TCapsule, TMeteor> GetRandomBiome();
     }
 
     public interface IBiomeSettings<out TBiome, out TPortal, out TCapsule, out TMeteor>

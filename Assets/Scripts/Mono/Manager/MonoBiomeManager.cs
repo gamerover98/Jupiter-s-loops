@@ -20,70 +20,72 @@ namespace Mono.Manager
 {
     public class MonoBiomeManager : MonoBehaviour, IBiomeManager
     {
+        private readonly CustomRandom _random = new();
+
         [SerializeField] private List<MonoBiomeSettings> biomes;
         public IEnumerable<IBiomeSettings> GetBiomesSettings() => biomes;
 
-        private readonly CustomRandom _random = new();
+        private MonoBiomeSettings _currentBiomeSettings;
+        public IBiomeSettings GetCurrentBiome() => _currentBiomeSettings;
 
-        public MonoBiome GetRandomBiome()
+        private MonoBiomeSettings _nextBiomeSettings;
+        public IBiomeSettings GetNextBiome() => _nextBiomeSettings;
+
+        private void Awake()
+        {
+            _currentBiomeSettings = GetRandomBiome() as MonoBiomeSettings;
+            _nextBiomeSettings = GetRandomBiome() as MonoBiomeSettings;
+
+            if (_currentBiomeSettings == null) Debug.LogWarning("The current biome settings is null");
+            if (_nextBiomeSettings == null) Debug.LogWarning("The next biome settings is null");
+
+            if (_currentBiomeSettings != null && _currentBiomeSettings.Equals(_nextBiomeSettings))
+                Debug.LogWarning("Current and next biomes shouldn't be the same instance!");
+        }
+
+        public IBiomeSettings GetRandomBiome()
         {
             var weightedItems = GetBiomesSettings().ToList();
+            if (_currentBiomeSettings != null) weightedItems.Remove(_currentBiomeSettings);
 
             switch (weightedItems.Count)
             {
                 case 0: return default;
-                case 1: return weightedItems[0].GetBiome();
+                case 1: return weightedItems[0];
             }
 
-            var randomWeight = _random.NumberInRange(0, GetTotalWeight());
+            var totalWeight = GetBiomesSettings().Sum(settings => settings.GetWeight());
+            var randomWeight = _random.NumberInRange(0, totalWeight);
             var weightingSum = 0;
 
             foreach (var currentItem in weightedItems)
             {
                 weightingSum += currentItem.GetWeight();
-
-                if (randomWeight < weightingSum)
-                {
-                    return currentItem.GetBiome();
-                }
+                if (randomWeight < weightingSum) return currentItem;
             }
 
-            return weightingSum == 0 ? default : weightedItems[^1].GetBiome();
+            return weightingSum == 0 ? default : weightedItems[^1];
+        }
+    }
+
+    [Serializable]
+    public class MonoBiomeSettings : IBiomeSettings
+    {
+        [SerializeField] private MonoBiome biome;
+        [SerializeField] private int weight;
+
+        public MonoBiomeSettings(MonoBiome biome, int weight = 50)
+        {
+            this.biome = biome;
+            this.weight = weight;
         }
 
-        public MonoBiome GetCurrentBiome()
+        public MonoBiome GetBiome() => biome;
+        public int GetWeight() => weight;
+
+        public override string ToString()
         {
-            throw new NotImplementedException();
-        }
-
-        public MonoBiome GetNextBiome()
-        {
-            throw new NotImplementedException();
-        }
-
-        private int GetTotalWeight() =>
-            GetBiomesSettings()
-                .Sum(settings => settings.GetWeight());
-
-        [Serializable]
-        public class MonoBiomeSettings : IBiomeSettings
-        {
-            [SerializeField] private MonoBiome biome;
-            [SerializeField] private int weight;
-
-            public MonoBiomeSettings(MonoBiome biome, int weight = 50)
-            {
-                this.biome = biome;
-                this.weight = weight;
-            }
-
-            public MonoBiome GetBiome() => biome;
-            public int GetWeight() => weight;
-            
-            public override string ToString()
-            {
-                return $"Biome: {biome.name}, Weight: {weight}";
-            }
+            return $"Biome: {biome.name}, Weight: {weight}";
         }
     }
 }

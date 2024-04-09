@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 2800000, guid: 9622a549358ed87458a70d87e2c8989a, type: 3}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.38174587, g: 0.46248955, b: 0.584839, a: 1}
+  m_IndirectSpecularColor: {r: 0.38174823, g: 0.4624728, b: 0.5848326, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -241,17 +241,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!114 &425770519 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7452745694224197044, guid: aebdaa4401d7d134e8f11f2876db5d89, type: 3}
-  m_PrefabInstance: {fileID: 6449412964294441724}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 871b22bbd978428ea7fb964c515b3a64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &457377190 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8596501450809247708, guid: c250bbfde8be0e24cbaff9da566cf49e, type: 3}
@@ -308,7 +297,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   biomes:
-  - biome: {fileID: 425770519}
+  - biome: {fileID: 7452745694224197044, guid: aebdaa4401d7d134e8f11f2876db5d89, type: 3}
+    weight: 100
+  - biome: {fileID: 7452745694224197044, guid: 12f5ea902a9226b4aba9ff0ffdfcdd53, type: 3}
     weight: 100
 --- !u!1 &963194225
 GameObject:
