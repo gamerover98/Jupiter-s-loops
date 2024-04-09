@@ -16,6 +16,9 @@ namespace Mono
         [SerializeField] private GameObject playerSpawnPosition;
         public Vector2 GetPlayerSpawnPosition() => playerSpawnPosition.transform.position;
         
+        [SerializeField] private GameObject biomeSpawnPosition;
+        public Vector2 GetBiomeSpawnPosition() => biomeSpawnPosition.transform.position;
+        
         [SerializeField] private GameObject nextBiomeSpawnPosition;
         public Vector2 GetNextBiomeSpawnPosition() => nextBiomeSpawnPosition.transform.position;
         

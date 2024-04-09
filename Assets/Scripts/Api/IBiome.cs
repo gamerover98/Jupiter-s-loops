@@ -17,10 +17,13 @@ namespace Api
 
         /// <summary>Reset the current biome instance.</summary>
         void ResetBiome();
-
+        
         /// <returns>The relative spawn position for the player</returns>
         TVector2 GetPlayerSpawnPosition();
 
+        /// <returns>Basically the pivot used to spawn this biome after an adjacent biome</returns>
+        TVector2 GetBiomeSpawnPosition();
+        
         /// <returns>The relative spawn position for the next adjacent biome</returns>
         TVector2 GetNextBiomeSpawnPosition();
 
