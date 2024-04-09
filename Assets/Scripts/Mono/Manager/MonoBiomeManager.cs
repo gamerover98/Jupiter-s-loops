@@ -8,13 +8,15 @@ using IBiomeManager =
         Mono.MonoBiome,
         Mono.MonoPortal,
         Mono.Collectible.MonoCapsule,
-        Mono.Entity.MonoMeteor>;
+        Mono.Entity.MonoMeteor,
+        UnityEngine.Vector2>;
 using IBiomeSettings =
     Api.Manager.IBiomeSettings<
         Mono.MonoBiome,
         Mono.MonoPortal,
         Mono.Collectible.MonoCapsule,
-        Mono.Entity.MonoMeteor>;
+        Mono.Entity.MonoMeteor,
+        UnityEngine.Vector2>;
 
 namespace Mono.Manager
 {

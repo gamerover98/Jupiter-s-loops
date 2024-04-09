@@ -4,8 +4,8 @@ using Api.Entity;
 
 namespace Api.Manager
 {
-    public interface IBiomeManager<out TBiome, out TPortal, out TCapsule, out TMeteor>
-        where TBiome : IBiome<TPortal, TCapsule, TMeteor>
+    public interface IBiomeManager<out TBiome, out TPortal, out TCapsule, out TMeteor, out TVector2>
+        where TBiome : IBiome<TPortal, TCapsule, TMeteor, TVector2>
         where TPortal : IPortal
         where TCapsule : ICapsule
         where TMeteor : IMeteor
@@ -14,11 +14,11 @@ namespace Api.Manager
         /// The collection of biome settings.
         /// </summary>
         /// <returns>An enumerable collection of biome settings.</returns>
-        public IEnumerable<IBiomeSettings<TBiome, TPortal, TCapsule, TMeteor>> GetBiomesSettings();
+        public IEnumerable<IBiomeSettings<TBiome, TPortal, TCapsule, TMeteor, TVector2>> GetBiomesSettings();
 
         /// <summary>This is the biome where the player is.</summary>
         /// <returns>The not-null biome instance.</returns>
-        public IBiomeSettings<TBiome, TPortal, TCapsule, TMeteor> GetCurrentBiome();
+        public IBiomeSettings<TBiome, TPortal, TCapsule, TMeteor, TVector2> GetCurrentBiome();
 
         /// <summary>
         /// The next biome must be a different instance of the current biome.
@@ -30,14 +30,14 @@ namespace Api.Manager
         /// </para>
         /// </summary>
         /// <returns>The not-null biome instance.</returns>
-        public IBiomeSettings<TBiome, TPortal, TCapsule, TMeteor> GetNextBiome();
+        public IBiomeSettings<TBiome, TPortal, TCapsule, TMeteor, TVector2> GetNextBiome();
 
         /// <returns>A not-null random biome settings.</returns>
-        public IBiomeSettings<TBiome, TPortal, TCapsule, TMeteor> GetRandomBiome();
+        public IBiomeSettings<TBiome, TPortal, TCapsule, TMeteor, TVector2> GetRandomBiome();
     }
 
-    public interface IBiomeSettings<out TBiome, out TPortal, out TCapsule, out TMeteor>
-        where TBiome : IBiome<TPortal, TCapsule, TMeteor>
+    public interface IBiomeSettings<out TBiome, out TPortal, out TCapsule, out TMeteor, out TVector2>
+        where TBiome : IBiome<TPortal, TCapsule, TMeteor, TVector2>
         where TPortal : IPortal
         where TCapsule : ICapsule
         where TMeteor : IMeteor
