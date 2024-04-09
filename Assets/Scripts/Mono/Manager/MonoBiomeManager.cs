@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Api.Common;
+using com.cyborgAssets.inspectorButtonPro;
 using UnityEngine;
 using IBiomeManager =
     Api.Manager.IBiomeManager<
@@ -22,33 +23,65 @@ namespace Mono.Manager
 {
     public class MonoBiomeManager : MonoBehaviour, IBiomeManager
     {
-        private readonly CustomRandom _random = new();
+        private readonly CustomRandom random = new(1);
 
-        [SerializeField] private List<MonoBiomeSettings> biomes;
-        public IEnumerable<IBiomeSettings> GetBiomesSettings() => biomes;
+        [SerializeField] private List<MonoBiomeSettings> biomesSettings;
+        public IEnumerable<IBiomeSettings> GetBiomesSettings() => biomesSettings;
 
-        private MonoBiomeSettings _currentBiomeSettings;
-        public IBiomeSettings GetCurrentBiome() => _currentBiomeSettings;
+        private MonoBiomeSettings previousBiomeSettings;
+        private MonoBiomeSettings currentBiomeSettings;
+        private MonoBiomeSettings nextBiomeSettings;
 
-        private MonoBiomeSettings _nextBiomeSettings;
-        public IBiomeSettings GetNextBiome() => _nextBiomeSettings;
+        public IBiomeSettings GetCurrentBiome() => currentBiomeSettings;
+        public IBiomeSettings GetNextBiome() => nextBiomeSettings;
 
         private void Awake()
         {
-            _currentBiomeSettings = GetRandomBiome() as MonoBiomeSettings;
-            _nextBiomeSettings = GetRandomBiome() as MonoBiomeSettings;
+            // spawn and replace the prefab to real game-object instances.
+            foreach (var biomeSettings in biomesSettings)
+            {
+                var biomeObject =
+                    Instantiate(
+                        biomeSettings.GetBiome(), //prefabs
+                        Vector3.zero,
+                        Quaternion.identity,
+                        transform);
+                biomeObject.SetActive(false);
+                biomeSettings.SetBiome(biomeObject);
+            }
+            
+            currentBiomeSettings = GetRandomBiomeSettings() as MonoBiomeSettings;
+            nextBiomeSettings = GetRandomBiomeSettings() as MonoBiomeSettings;
 
-            if (_currentBiomeSettings == null) Debug.LogWarning("The current biome settings is null");
-            if (_nextBiomeSettings == null) Debug.LogWarning("The next biome settings is null");
+            if (currentBiomeSettings == null) Debug.LogWarning("The current biome settings is null");
+            if (nextBiomeSettings == null) Debug.LogWarning("The next biome settings is null");
 
-            if (_currentBiomeSettings != null && _currentBiomeSettings.Equals(_nextBiomeSettings))
+            if (currentBiomeSettings != null && currentBiomeSettings.Equals(nextBiomeSettings))
                 Debug.LogWarning("Current and next biomes shouldn't be the same instance!");
         }
 
-        public IBiomeSettings GetRandomBiome()
+        private void Start()
+        {
+            if (currentBiomeSettings != null && nextBiomeSettings != null)
+                currentBiomeSettings.GetBiome().SpawnNext(nextBiomeSettings.GetBiome(), true);
+        }
+
+        [ProButton]
+        private void NextLevel()
+        {
+            if (previousBiomeSettings != null && previousBiomeSettings.GetBiome() != null)
+                previousBiomeSettings.GetBiome().Despawn();
+
+            previousBiomeSettings = currentBiomeSettings;
+            currentBiomeSettings = nextBiomeSettings;
+            nextBiomeSettings = GetRandomBiomeSettings() as MonoBiomeSettings;
+            currentBiomeSettings.GetBiome().SpawnNext(nextBiomeSettings!.GetBiome(), false);
+        }
+
+        public IBiomeSettings GetRandomBiomeSettings()
         {
             var weightedItems = GetBiomesSettings().ToList();
-            if (_currentBiomeSettings != null) weightedItems.Remove(_currentBiomeSettings);
+            if (currentBiomeSettings != null) weightedItems.Remove(currentBiomeSettings);
 
             switch (weightedItems.Count)
             {
@@ -57,7 +90,7 @@ namespace Mono.Manager
             }
 
             var totalWeight = GetBiomesSettings().Sum(settings => settings.GetWeight());
-            var randomWeight = _random.NumberInRange(0, totalWeight);
+            var randomWeight = random.NumberInRange(0, totalWeight);
             var weightingSum = 0;
 
             foreach (var currentItem in weightedItems)
@@ -83,6 +116,8 @@ namespace Mono.Manager
         }
 
         public MonoBiome GetBiome() => biome;
+        internal void SetBiome(MonoBiome newBiome) => biome = newBiome;
+        
         public int GetWeight() => weight;
 
         public override string ToString()

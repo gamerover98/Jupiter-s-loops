@@ -33,7 +33,7 @@ namespace Api.Manager
         public IBiomeSettings<TBiome, TPortal, TCapsule, TMeteor, TVector2> GetNextBiome();
 
         /// <returns>A not-null random biome settings.</returns>
-        public IBiomeSettings<TBiome, TPortal, TCapsule, TMeteor, TVector2> GetRandomBiome();
+        public IBiomeSettings<TBiome, TPortal, TCapsule, TMeteor, TVector2> GetRandomBiomeSettings();
     }
 
     public interface IBiomeSettings<out TBiome, out TPortal, out TCapsule, out TMeteor, out TVector2>
