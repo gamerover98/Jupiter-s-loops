@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Api.Collectible;
-using Api.Common;
 using Api.Entity;
 
 namespace Api.Manager
@@ -18,8 +16,24 @@ namespace Api.Manager
         /// <returns>An enumerable collection of biome settings.</returns>
         public IEnumerable<IBiomeSettings<TBiome, TPortal, TCapsule, TMeteor>> GetBiomesSettings();
 
-        /// <returns>A random biome settings.</returns>
+        /// <returns>A not-null random biome settings.</returns>
         public TBiome GetRandomBiome();
+
+        /// <summary>This is the biome where the player is.</summary>
+        /// <returns>The not-null biome instance.</returns>
+        public TBiome GetCurrentBiome();
+
+        /// <summary>
+        /// The next biome must be a different instance of the current biome.
+        /// <para>
+        /// NB: The next biome is always placed after the
+        ///     current biome to give the sense of continuity.
+        ///     When the player goes into this biome, this will be the current
+        ///     and a next biome is placed.
+        /// </para>
+        /// </summary>
+        /// <returns>The not-null biome instance.</returns>
+        public TBiome GetNextBiome();
     }
 
     public interface IBiomeSettings<out TBiome, out TPortal, out TCapsule, out TMeteor>

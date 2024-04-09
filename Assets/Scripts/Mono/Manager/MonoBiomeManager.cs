@@ -51,6 +51,16 @@ namespace Mono.Manager
             return weightingSum == 0 ? default : weightedItems[^1].GetBiome();
         }
 
+        public MonoBiome GetCurrentBiome()
+        {
+            throw new NotImplementedException();
+        }
+
+        public MonoBiome GetNextBiome()
+        {
+            throw new NotImplementedException();
+        }
+
         private int GetTotalWeight() =>
             GetBiomesSettings()
                 .Sum(settings => settings.GetWeight());
