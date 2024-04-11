@@ -16,13 +16,13 @@ namespace Mono.Entity
         [Range(-360, 360)] [SerializeField] private float rollMinDegrees = -45;
         [Range(-360, 360)] [SerializeField] private float rollMaxDegrees = 45;
 
-        private Rigidbody _rigidBody;
-        private float _initDistance;
+        private Rigidbody rigidBody;
+        private float cameraPadding;
 
         private void Awake()
         {
-            _rigidBody = GetComponent<Rigidbody>();
-            _initDistance = Mathf.Abs(_rigidBody.position.x - mainCamera.transform.position.x);
+            rigidBody = GetComponent<Rigidbody>();
+            cameraPadding = Mathf.Abs(rigidBody.position.x - mainCamera.transform.position.x);
         }
 
         private void Update()
@@ -32,8 +32,8 @@ namespace Mono.Entity
 
             var targetPosition =
                 new Vector3(
-                    gameObject.transform.position.x + _initDistance,
-                    cameraPosition.y,
+                    gameObject.transform.position.x + cameraPadding,
+                    gameObject.transform.position.y,
                     cameraPosition.z);
 
             cameraTransform.position = targetPosition;
@@ -49,13 +49,23 @@ namespace Mono.Entity
             velocity = MoveForward(velocity);
             velocity *= Time.fixedDeltaTime;
 
-            var from = _rigidBody.position;
+            var from = rigidBody.position;
             var to = new Vector3((from + velocity).x, (from + velocity).y, from.z);
-            _rigidBody.MovePosition(to);
+            rigidBody.MovePosition(to);
 
             #endregion
 
             RollHorizontally(verticalMovement);
+        }
+
+        public override void Teleport(Vector2 position)
+        {
+            base.Teleport(position);
+            mainCamera.transform.position =
+                new Vector3(
+                    position.x + cameraPadding,
+                    position.y,
+                    mainCamera.transform.position.z);
         }
 
         private Vector3 MoveForward(Vector3 velocity)
@@ -65,11 +75,11 @@ namespace Mono.Entity
 
         private Vector3 MoveVertically(float verticalMovement)
         {
-            var velocity = _rigidBody.velocity + transform.up.normalized * (verticalMovement * accelerationY);
+            var velocity = rigidBody.velocity + transform.up.normalized * (verticalMovement * accelerationY);
             velocity.y = Mathf.Clamp(velocity.y, -maxSpeedY, maxSpeedY);
 
-            if (verticalMovement == 0 && _rigidBody.velocity.magnitude > 0)
-                velocity -= new Vector3(0, _rigidBody.velocity.normalized.y * decelerationY);
+            if (verticalMovement == 0 && rigidBody.velocity.magnitude > 0)
+                velocity -= new Vector3(0, rigidBody.velocity.normalized.y * decelerationY);
 
             return velocity;
         }
@@ -85,7 +95,7 @@ namespace Mono.Entity
                 _ => new Vector3(0F, fromEulerAngles.y, fromEulerAngles.z),
             };
 
-            _rigidBody.MoveRotation(
+            rigidBody.MoveRotation(
                 Quaternion.RotateTowards(
                     from,
                     Quaternion.Euler(to),

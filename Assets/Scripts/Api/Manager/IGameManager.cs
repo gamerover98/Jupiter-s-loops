@@ -2,7 +2,8 @@
 
 namespace Api.Manager
 {
-    public interface IGameManager<out TPlayer> where TPlayer : IPlayer
+    public interface IGameManager<out TPlayer, in TVector2> 
+        where TPlayer : IPlayer<TVector2>
     {
         /// <summary>The player instance.</summary>
         /// <returns>The current player instance</returns>

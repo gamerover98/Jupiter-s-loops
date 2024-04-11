@@ -1275,6 +1275,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8602868653714773770}
     m_Modifications:
+    - target: {fileID: 1344511122907086166, guid: 6f0f1ce610917ee4d8f3d7b838a063f4, type: 3}
+      propertyPath: destinationPortal
+      value: 
+      objectReference: {fileID: 1086553334040137280}
     - target: {fileID: 2043158034412296644, guid: 6f0f1ce610917ee4d8f3d7b838a063f4, type: 3}
       propertyPath: m_Name
       value: Entry

@@ -7,7 +7,7 @@ namespace Api
     public interface IBiome<out TPortal, out TCapsule, out TMeteor, out TVector2>
         where TPortal : IPortal
         where TCapsule : ICapsule
-        where TMeteor : IMeteor
+        where TMeteor : IMeteor<TVector2>
     {
         /// <returns>True if the biome is active in the scene.</returns>
         bool IsActive();

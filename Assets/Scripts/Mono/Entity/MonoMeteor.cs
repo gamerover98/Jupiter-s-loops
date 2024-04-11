@@ -3,8 +3,14 @@ using UnityEngine;
 
 namespace Mono.Entity
 {
-    public class MonoMeteor : MonoBehaviour, IMeteor
+    public class MonoMeteor : MonoBehaviour, IMeteor<Vector2>
     {
-        //TODO: not implemented yet.
+        public bool IsActive() => gameObject.activeSelf;
+        public void SetActive(bool active) => gameObject.SetActive(active);
+        
+        public void Teleport(Vector2 position)
+        {
+            transform.position = position;
+        }
     }
 }

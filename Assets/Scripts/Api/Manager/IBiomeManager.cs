@@ -8,7 +8,7 @@ namespace Api.Manager
         where TBiome : IBiome<TPortal, TCapsule, TMeteor, TVector2>
         where TPortal : IPortal
         where TCapsule : ICapsule
-        where TMeteor : IMeteor
+        where TMeteor : IMeteor<TVector2>
     {
         /// <summary>
         /// The collection of biome settings.
@@ -40,7 +40,7 @@ namespace Api.Manager
         where TBiome : IBiome<TPortal, TCapsule, TMeteor, TVector2>
         where TPortal : IPortal
         where TCapsule : ICapsule
-        where TMeteor : IMeteor
+        where TMeteor : IMeteor<TVector2>
     {
         /// <summary>
         /// The biome instance.

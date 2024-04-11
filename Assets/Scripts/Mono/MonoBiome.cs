@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Mono.Collectible;
 using Mono.Entity;
+using Mono.Manager;
 using UnityEngine;
 using IBiome =
     Api.IBiome<
@@ -51,7 +52,12 @@ namespace Mono
         public void SpawnNext(MonoBiome nextBiome, bool firstSpawn)
         {
             if (firstSpawn)
+            {
                 transform.position = biomeSpawnPosition.transform.position;
+                var player = MonoGameManager.Instance.GetPlayer();
+                player.Teleport(playerSpawnPosition.transform.position);
+                player.SetActive(true);
+            }
 
             SetActive(true);
 
