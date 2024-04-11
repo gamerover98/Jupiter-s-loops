@@ -467,6 +467,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76419dc5a2618e54eab3ac591f59cf1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  biomeManager: {fileID: 683703013}
   ship: {fileID: 457377190}
 --- !u!4 &1706216992
 Transform:

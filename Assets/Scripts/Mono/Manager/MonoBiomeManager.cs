@@ -10,14 +10,16 @@ using IBiomeManager =
         Mono.MonoPortal,
         Mono.Collectible.MonoCapsule,
         Mono.Entity.MonoMeteor,
-        UnityEngine.Vector2>;
+        UnityEngine.Vector2,
+        UnityEngine.GameObject>;
 using IBiomeSettings =
     Api.Manager.IBiomeSettings<
         Mono.MonoBiome,
         Mono.MonoPortal,
         Mono.Collectible.MonoCapsule,
         Mono.Entity.MonoMeteor,
-        UnityEngine.Vector2>;
+        UnityEngine.Vector2,
+        UnityEngine.GameObject>;
 
 namespace Mono.Manager
 {
@@ -49,7 +51,7 @@ namespace Mono.Manager
                 biomeObject.SetActive(false);
                 biomeSettings.SetBiome(biomeObject);
             }
-            
+
             currentBiomeSettings = GetRandomBiomeSettings() as MonoBiomeSettings;
             nextBiomeSettings = GetRandomBiomeSettings() as MonoBiomeSettings;
 
@@ -67,11 +69,14 @@ namespace Mono.Manager
         }
 
         [ProButton]
-        private void NextLevel()
+        public void NextLevel()
         {
             if (previousBiomeSettings != null && previousBiomeSettings.GetBiome() != null)
                 previousBiomeSettings.GetBiome().Despawn();
 
+            // Disable the entry portal to grant the access to the next biome.
+            currentBiomeSettings.GetBiome().GetEntryPortal().SetActive(false);
+            
             previousBiomeSettings = currentBiomeSettings;
             currentBiomeSettings = nextBiomeSettings;
             nextBiomeSettings = GetRandomBiomeSettings() as MonoBiomeSettings;
@@ -117,7 +122,7 @@ namespace Mono.Manager
 
         public MonoBiome GetBiome() => biome;
         internal void SetBiome(MonoBiome newBiome) => biome = newBiome;
-        
+
         public int GetWeight() => weight;
 
         public override string ToString()

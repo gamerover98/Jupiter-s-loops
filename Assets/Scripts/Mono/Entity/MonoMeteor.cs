@@ -12,5 +12,7 @@ namespace Mono.Entity
         {
             transform.position = position;
         }
+        
+        public void RequireReset() => SetActive(true);
     }
 }

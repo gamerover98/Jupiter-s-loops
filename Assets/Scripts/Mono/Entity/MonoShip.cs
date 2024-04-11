@@ -61,10 +61,5 @@ namespace Mono.Entity
                     Quaternion.Euler(to),
                     rollSpeed * Time.fixedDeltaTime));
         }
-
-        protected void OnTriggerEnter(Collider other)
-        {
-            Debug.Log("Ship collision: " + other.gameObject.name);
-        }
     }
 }

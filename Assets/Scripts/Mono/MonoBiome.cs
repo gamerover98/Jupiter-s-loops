@@ -8,7 +8,8 @@ using IBiome =
         Mono.MonoPortal,
         Mono.Collectible.MonoCapsule,
         Mono.Entity.MonoMeteor,
-        UnityEngine.Vector2>;
+        UnityEngine.Vector2,
+        UnityEngine.GameObject>;
 
 namespace Mono
 {
@@ -40,7 +41,11 @@ namespace Mono
 
         public void ResetBiome()
         {
-            //TODO: reset all capsules, meteors, etc.
+            foreach (var monoCapsule in capsules) monoCapsule.RequireReset();
+            foreach (var monoMeteor in meteors) monoMeteor.RequireReset();
+            
+            entryPortal.RequireReset();
+            exitPortal.RequireReset();
         }
 
         public void Despawn()

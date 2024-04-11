@@ -4,9 +4,14 @@ using Api.Entity;
 
 namespace Api
 {
-    public interface IBiome<out TPortal, out TCapsule, out TMeteor, out TVector2>
+    public interface IBiome<
+        out TPortal,
+        out TCapsule,
+        out TMeteor,
+        out TVector2,
+        out TCollider>
         where TPortal : IPortal
-        where TCapsule : ICapsule
+        where TCapsule : ICapsule<TCollider>
         where TMeteor : IMeteor<TVector2>
     {
         /// <returns>True if the biome is active in the scene.</returns>

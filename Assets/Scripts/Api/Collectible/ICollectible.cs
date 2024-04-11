@@ -1,7 +1,9 @@
-﻿namespace Api.Collectible
+﻿using Api.Common;
+
+namespace Api.Collectible
 {
-    public interface ICollectible
+    public interface ICollectible<in TCollider> : ICollidable<TCollider>, IResettable
     {
-        //TODO: not implemented yet.
+        // Nothing to do.
     }
 }

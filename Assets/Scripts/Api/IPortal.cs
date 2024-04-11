@@ -1,9 +1,16 @@
-﻿using JetBrains.Annotations;
+﻿using Api.Common;
+using JetBrains.Annotations;
 
 namespace Api
 {
-    public interface IPortal
+    public interface IPortal : IResettable
     {
+        /// <returns>True if the biome is active in the scene.</returns>
+        bool IsActive();
+
+        /// <param name="active">Enable or disable this biome from the scene.</param>
+        void SetActive(bool active);
+        
         /// <summary>
         /// Get the type of the current portal.
         /// </summary>

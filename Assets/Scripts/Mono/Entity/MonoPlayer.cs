@@ -1,4 +1,5 @@
-﻿using Api.Entity;
+﻿using Api.Collectible;
+using Api.Entity;
 using UnityEngine;
 
 namespace Mono.Entity
@@ -62,6 +63,15 @@ namespace Mono.Entity
                     position.x + CameraPadding,
                     position.y,
                     mainCamera.transform.position.z);
+        }
+        
+        protected virtual void OnTriggerEnter(Collider other)
+        {
+            if (!other.gameObject.TryGetComponent(out MonoBehaviour monoBehaviour)) return;
+            Debug.Log("Ship collision: " + other.gameObject.name);
+            
+            if (monoBehaviour is ICollectible<GameObject> collectible) 
+                collectible.OnCollide(gameObject);
         }
     }
 }

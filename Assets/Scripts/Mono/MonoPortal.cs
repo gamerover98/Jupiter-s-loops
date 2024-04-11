@@ -8,11 +8,13 @@ namespace Mono
     {
         [SerializeField] private PortalType portalType;
         [SerializeField] private MonoPortal destinationPortal;
-        
-        public PortalType GetPortalType() => portalType;
 
+        public bool IsActive() => gameObject.activeSelf;
+        public void SetActive(bool active) => gameObject.SetActive(active);
+
+        public PortalType GetPortalType() => portalType;
         public IPortal GetDestinationPortal() => destinationPortal;
-        
+
         private void Awake()
         {
             if (portalType == PortalType.Exit && destinationPortal != null)
@@ -20,7 +22,7 @@ namespace Mono
                 Debug.LogWarning("The Entry Portal cannot have a destination Portal");
             }
         }
-        
+
         private void OnTriggerEnter(Collider other)
         {
             if (portalType != PortalType.Entry) return;
@@ -30,5 +32,7 @@ namespace Mono
 
             playerTransform.position = destinationPortal.transform.position;
         }
+
+        public void RequireReset() => SetActive(true);
     }
 }
