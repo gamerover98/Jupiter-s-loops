@@ -3,32 +3,65 @@ using UnityEngine;
 
 namespace Mono.Entity
 {
+    [RequireComponent(typeof(Rigidbody), typeof(MeshCollider))]
     public abstract class MonoPlayer : MonoBehaviour, IPlayer<Vector2>
     {
-        [SerializeField] private int health;
-        [SerializeField] private int maxHealth;
+        [SerializeField] protected int health;
+        [SerializeField] protected int maxHealth;
+        [SerializeField] protected Camera mainCamera;
+
+        protected Rigidbody RigidBody { get; private set; }
+        protected float CameraPadding;
+
+        protected virtual void Awake()
+        {
+            RigidBody = GetComponent<Rigidbody>();
+            CameraPadding = Mathf.Abs(RigidBody.position.x - mainCamera.transform.position.x);
+        }
+
+        protected virtual void Update()
+        {
+            var cameraTransform = mainCamera.transform;
+            var cameraPosition = cameraTransform.position;
+
+            var targetPosition =
+                new Vector3(
+                    gameObject.transform.position.x + CameraPadding,
+                    gameObject.transform.position.y,
+                    cameraPosition.z);
+
+            cameraTransform.position = targetPosition;
+        }
         
-        public bool IsActive() => gameObject.activeSelf;
-        public void SetActive(bool active) => gameObject.SetActive(active);
+        public virtual bool IsActive() => gameObject.activeSelf;
+        public virtual void SetActive(bool active) => gameObject.SetActive(active);
 
-        public int GetHealth() => health;
+        public virtual int GetHealth() => health;
 
-        public void SetHealth(int value)
+        public virtual void SetHealth(int value)
         {
             if (value > GetMaxHealth()) value = GetMaxHealth();
             health = value;
         }
 
-        public int GetMaxHealth() => maxHealth;
+        public virtual int GetMaxHealth() => maxHealth;
 
-        public void SetMaxHealth(int maxValue)
+        public virtual void SetMaxHealth(int maxValue)
         {
             maxHealth = maxValue;
             if (health > maxHealth) health = maxHealth;
         }
 
-        public bool IsDead() => health <= 0;
+        public virtual bool IsDead() => health <= 0;
 
-        public virtual void Teleport(Vector2 position) => transform.position = position;
+        public virtual void Teleport(Vector2 position)
+        {
+            transform.position = position;
+            mainCamera.transform.position =
+                new Vector3(
+                    position.x + CameraPadding,
+                    position.y,
+                    mainCamera.transform.position.z);
+        }
     }
 }
