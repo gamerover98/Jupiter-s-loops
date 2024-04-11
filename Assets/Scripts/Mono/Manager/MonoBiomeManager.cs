@@ -30,6 +30,7 @@ namespace Mono.Manager
         [SerializeField] private List<MonoBiomeSettings> biomesSettings;
         public IEnumerable<IBiomeSettings> GetBiomesSettings() => biomesSettings;
 
+        private MonoBiome toBeRemoved;
         private MonoBiomeSettings previousBiomeSettings;
         private MonoBiomeSettings currentBiomeSettings;
         private MonoBiomeSettings nextBiomeSettings;
@@ -71,22 +72,32 @@ namespace Mono.Manager
         [ProButton]
         public void NextLevel()
         {
-            if (previousBiomeSettings != null && previousBiomeSettings.GetBiome() != null)
-                previousBiomeSettings.GetBiome().Despawn();
-
-            // Disable the entry portal to grant the access to the next biome.
-            currentBiomeSettings.GetBiome().GetEntryPortal().SetActive(false);
+            toBeRemoved?.Despawn();
+            toBeRemoved = previousBiomeSettings?.GetBiome();
             
             previousBiomeSettings = currentBiomeSettings;
             currentBiomeSettings = nextBiomeSettings;
             nextBiomeSettings = GetRandomBiomeSettings() as MonoBiomeSettings;
             currentBiomeSettings.GetBiome().SpawnNext(nextBiomeSettings!.GetBiome(), false);
+            
+            // Disable the entry portal to grant the access to the next biome.
+            previousBiomeSettings.GetBiome().GetEntryPortal().SetActive(false);
+            currentBiomeSettings.GetBiome().GetExitPortal().SetActive(false);
+        }
+
+        [ProButton]
+        private void CatchUpAllCapsules()
+        {
+            if (currentBiomeSettings == null || currentBiomeSettings.GetBiome() == null) return;
+            foreach (var monoCapsule in currentBiomeSettings.GetBiome().GetCapsules())
+                monoCapsule.OnCollide(gameObject);
         }
 
         public IBiomeSettings GetRandomBiomeSettings()
         {
             var weightedItems = GetBiomesSettings().ToList();
             if (currentBiomeSettings != null) weightedItems.Remove(currentBiomeSettings);
+            if (previousBiomeSettings != null) weightedItems.Remove(previousBiomeSettings);
 
             switch (weightedItems.Count)
             {

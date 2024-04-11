@@ -30,6 +30,7 @@ namespace Mono
             var player = MonoGameManager.Instance!.GetPlayer();
             var playerTransform = player.transform;
 
+            if (!destinationPortal.IsActive()) destinationPortal.SetActive(true);
             playerTransform.position = destinationPortal.transform.position;
         }
 
