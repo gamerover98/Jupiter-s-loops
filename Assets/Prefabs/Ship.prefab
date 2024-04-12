@@ -702,6 +702,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab4139ed195f10d4f8c41cb32bdc0a36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 1
+  maxHealth: 1
   mainCamera: {fileID: 0}
   accelerationY: 20
   maxSpeedY: 6.5
