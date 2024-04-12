@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Mono.Collectible
 {
-    [RequireComponent(typeof(MeshCollider))]
+    [RequireComponent(typeof(Collider))]
     public class MonoCapsule : MonoBehaviour, ICapsule<GameObject>
     {
         public bool IsActive() => gameObject.activeSelf;

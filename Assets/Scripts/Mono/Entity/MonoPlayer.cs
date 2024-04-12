@@ -1,10 +1,10 @@
-﻿using Api.Collectible;
+﻿using Api.Common;
 using Api.Entity;
 using UnityEngine;
 
 namespace Mono.Entity
 {
-    [RequireComponent(typeof(Rigidbody), typeof(MeshCollider))]
+    [RequireComponent(typeof(Rigidbody), typeof(Collider))]
     public abstract class MonoPlayer : MonoBehaviour, IPlayer<Vector2>
     {
         [SerializeField] protected int health;
@@ -33,7 +33,7 @@ namespace Mono.Entity
 
             cameraTransform.position = targetPosition;
         }
-        
+
         public virtual bool IsActive() => gameObject.activeSelf;
         public virtual void SetActive(bool active) => gameObject.SetActive(active);
 
@@ -64,14 +64,12 @@ namespace Mono.Entity
                     position.y,
                     mainCamera.transform.position.z);
         }
-        
+
         protected virtual void OnTriggerEnter(Collider other)
         {
             if (!other.gameObject.TryGetComponent(out MonoBehaviour monoBehaviour)) return;
-            Debug.Log("Ship collision: " + other.gameObject.name);
-            
-            if (monoBehaviour is ICollectible<GameObject> collectible) 
-                collectible.OnCollide(gameObject);
+            if (monoBehaviour is ICollidable<GameObject> collidable)
+                collidable.OnCollide(gameObject);
         }
     }
 }

@@ -73,6 +73,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 33f16be7011f8e645b252a1ea9572ee1, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: -2789342097192147858}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 33f16be7011f8e645b252a1ea9572ee1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 438092657827569091}
   m_SourcePrefab: {fileID: 100100000, guid: 33f16be7011f8e645b252a1ea9572ee1, type: 3}
@@ -81,6 +84,18 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 33f16be7011f8e645b252a1ea9572ee1, type: 3}
   m_PrefabInstance: {fileID: 3188095449391588644}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &-2789342097192147858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2377630374228088949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 596c368c708246769ad42d3698942bc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!64 &438092657827569091
 MeshCollider:
   m_ObjectHideFlags: 0
