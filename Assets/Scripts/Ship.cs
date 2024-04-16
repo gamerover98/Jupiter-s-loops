@@ -10,64 +10,103 @@ public class Ship : MonoBehaviour
     [SerializeField] private float maxSpeedY = 10f;
     [SerializeField] private float decelerationY = 5f;
     [SerializeField] private float speedX = 0.01f;
+    [SerializeField] private float cameraSpeed = 6f;
     [SerializeField] private float rollSpeed = 15;
+
+    [SerializeField] private float maxHorizontalSpeed = 10f; 
+    [SerializeField] private float minHorizontalSpeed = 4f; 
+    [SerializeField] private float horizontalAcceleration = 5f;
+
     [Range(-360, 360)] [SerializeField] private float rollMinDegrees = -45;
     [Range(-360, 360)] [SerializeField] private float rollMaxDegrees = 45;
 
-    private Rigidbody _rigidBody;
-    private float _initDistance;
+    private Transform cameraTransform;
+    private Vector3 cameraPosition;
+    
+    private Rigidbody rigidBody;
+    private float initDistance;
 
     private void Awake()
     {
-        _rigidBody = GetComponent<Rigidbody>();
-        _initDistance = Mathf.Abs(_rigidBody.position.x - mainCamera.transform.position.x);
+        rigidBody = GetComponent<Rigidbody>();
+        initDistance = Mathf.Abs(rigidBody.position.x - mainCamera.transform.position.x);
+        
+        cameraTransform = mainCamera.transform;
+        cameraPosition = cameraTransform.position;
+        
+        MoveCameraToPlayerPosition();
+
     }
 
     private void Update()
     {
-        var cameraTransform = mainCamera.transform;
-        var cameraPosition = cameraTransform.position;
-
-        var targetPosition =
-            new Vector3(
-                gameObject.transform.position.x + _initDistance,
-                cameraPosition.y,
-                cameraPosition.z);
-
-        cameraTransform.position = targetPosition;
+        cameraTransform.Translate(Vector3.right * (cameraSpeed * Time.deltaTime));
+        //cameraTransform.position = targetPosition;
     }
-
+    
+    
+    public void MoveCameraToPlayerPosition()
+    {
+        cameraTransform.position = new Vector3(transform.position.x + initDistance, cameraTransform.position.y, cameraTransform.position.z);
+    }
+    
+    // private Vector3 CameraUpdatePosition()
+    // {
+    //     var targetPosition =
+    //         new Vector3(
+    //             gameObject.transform.position.x + initDistance,
+    //             cameraPosition.y,
+    //             cameraPosition.z);
+    //     return(targetPosition);
+    // }
+    
     private void FixedUpdate()
     {
         var verticalMovement = Input.GetAxis("Vertical");
+        var horizontalMovement = Input.GetAxis("Horizontal");
 
         #region MOVE_SHIP_VERTICALLY_AND_FORWARD
         var velocity = MoveVertically(verticalMovement);
-        velocity = MoveForward(velocity);
-        velocity *= Time.fixedDeltaTime;
+        velocity = MoveForward(velocity, horizontalMovement);
         
-        var from = _rigidBody.position;
-        var to = new Vector3((from + velocity).x, (from + velocity).y, from.z);
-        _rigidBody.MovePosition(to);
+        velocity.x += horizontalMovement * horizontalAcceleration * Time.fixedDeltaTime;
+        
+        if (Mathf.Abs(velocity.x) > maxHorizontalSpeed)
+        {
+            velocity.x = Mathf.Sign(velocity.x) * maxHorizontalSpeed;
+        }
+        else if (Mathf.Abs(velocity.x) < minHorizontalSpeed)
+        {
+            velocity.x = Mathf.Sign(velocity.x) * minHorizontalSpeed;
+        }
+
+        var from = rigidBody.position;
+        var to = from + velocity * Time.fixedDeltaTime;
+        rigidBody.MovePosition(to);
         #endregion
-        
+
         RollHorizontally(verticalMovement);
     }
 
-    private Vector3 MoveForward(Vector3 velocity)
+    private Vector3 MoveForward(Vector3 velocity, float horizontalMovement)
     {
-        return new Vector3(speedX, velocity.y, velocity.z);
+        float forwardSpeed = speedX + horizontalMovement * horizontalAcceleration;
+        return new Vector3(forwardSpeed, velocity.y, velocity.z);
     }
 
     private Vector3 MoveVertically(float verticalMovement)
     {
-        var velocity = _rigidBody.velocity + transform.up.normalized * (verticalMovement * accelerationY);
-        velocity.y = Mathf.Clamp(velocity.y, -maxSpeedY, maxSpeedY);
+        float targetVerticalVelocity = verticalMovement * maxSpeedY;
+        Vector3 newVelocity = rigidBody.velocity; 
+        newVelocity.y = Mathf.MoveTowards(newVelocity.y, targetVerticalVelocity, Time.deltaTime * accelerationY);
         
-        if (verticalMovement == 0 && _rigidBody.velocity.magnitude > 0)
-            velocity -= new Vector3(0, _rigidBody.velocity.normalized.y * decelerationY);
+        if (Mathf.Approximately(verticalMovement, 0) && !Mathf.Approximately(newVelocity.y, 0))     // Se il movimento verticale � zero e il rigidBody si muove in verticale allora applica la decelerazione
+        {
+            float verticalDeceleration = Mathf.Sign(newVelocity.y) * decelerationY;
+            newVelocity.y = Mathf.MoveTowards(newVelocity.y, 0, Time.deltaTime * Mathf.Abs(verticalDeceleration));
+        }
 
-        return velocity;
+        return newVelocity;
     }
 
     private void RollHorizontally(float verticalMovement)
@@ -81,20 +120,20 @@ public class Ship : MonoBehaviour
             _ => new Vector3(0F, fromEulerAngles.y, fromEulerAngles.z),
         };
 
-        _rigidBody.MoveRotation(
+        rigidBody.MoveRotation(
             Quaternion.RotateTowards(
                 from,
                 Quaternion.Euler(to),
                 rollSpeed * Time.fixedDeltaTime));
     }
-
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    Debug.Log("Collision detected with: " + collision.gameObject.name);
-    //}
-
+    
     private void OnTriggerEnter(Collider other)
     {
+        if (other.name == "Entry")
+        {
+            Debug.Log("Enter The Portal");
+            MoveCameraToPlayerPosition();
+        }
         Debug.Log("Ship collision: " + other.gameObject.name);
     }
 }
