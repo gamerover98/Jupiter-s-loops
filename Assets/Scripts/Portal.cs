@@ -20,12 +20,9 @@ public class Portal : MonoBehaviour
         var ship = GameManager.Instance!.ship;
         var camera = GameManager.Instance!.camera;
         var shipTransform = ship.transform;
-        var cameraTransform = camera.transform;
-
+        
         shipTransform.position = destination.transform.position;
-        var vector3 = cameraTransform.position;
-        vector3.x = destination.transform.position.x;
-        cameraTransform.position = vector3;
+        ship.MoveCameraToPlayerPosition();  //reset posizione camera
     }
 }
 

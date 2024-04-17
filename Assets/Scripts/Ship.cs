@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
@@ -10,7 +11,6 @@ public class Ship : MonoBehaviour
     [SerializeField] private float maxSpeedY = 10f;
     [SerializeField] private float decelerationY = 5f;
     [SerializeField] private float speedX = 0.01f;
-    [SerializeField] private float cameraSpeed = 6f;
     [SerializeField] private float rollSpeed = 15;
 
     [SerializeField] private float maxHorizontalSpeed = 10f; 
@@ -20,11 +20,16 @@ public class Ship : MonoBehaviour
     [Range(-360, 360)] [SerializeField] private float rollMinDegrees = -45;
     [Range(-360, 360)] [SerializeField] private float rollMaxDegrees = 45;
 
+    //variabili camera
+    [SerializeField] private float cameraSpeed = 6f;
+    [SerializeField] private float cameraLimitY = 0.2f;  //distanza dal bordo dello schermo
+    
+    
     private Transform cameraTransform;
     private Vector3 cameraPosition;
     
     private Rigidbody rigidBody;
-    private float initDistance;
+    public float initDistance;
 
     private void Awake()
     {
@@ -35,12 +40,21 @@ public class Ship : MonoBehaviour
         cameraPosition = cameraTransform.position;
         
         MoveCameraToPlayerPosition();
-
     }
-    
+
+    private void Update()
+    {
+        Vector3 CameraPositionY = mainCamera.WorldToViewportPoint(transform.position);
+
+        if (CameraPositionY.y > 1 - cameraLimitY)
+            cameraTransform.Translate(Vector3.up * (cameraSpeed * Time.deltaTime));
+        else if (CameraPositionY.y < cameraLimitY)
+            cameraTransform.Translate(Vector3.down * (cameraSpeed * Time.deltaTime));
+    }
+
     public void MoveCameraToPlayerPosition()
     {
-        cameraTransform.position = new Vector3(transform.position.x + initDistance, cameraTransform.position.y, cameraTransform.position.z);
+        cameraTransform.position = new Vector3(transform.position.x + initDistance, transform.position.y, cameraTransform.position.z);
     }
     
     // private Vector3 CameraUpdatePosition()
