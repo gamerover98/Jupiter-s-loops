@@ -37,13 +37,6 @@ public class Ship : MonoBehaviour
         MoveCameraToPlayerPosition();
 
     }
-
-    private void Update()
-    {
-        cameraTransform.Translate(Vector3.right * (cameraSpeed * Time.deltaTime));
-        //cameraTransform.position = targetPosition;
-    }
-    
     
     public void MoveCameraToPlayerPosition()
     {
@@ -84,7 +77,10 @@ public class Ship : MonoBehaviour
         var to = from + velocity * Time.fixedDeltaTime;
         rigidBody.MovePosition(to);
         #endregion
-
+        
+        //Lo faccio nel fixedUpdate in quanto gli aggiornamenti vengono effettuati a tempi regolari 
+        cameraTransform.Translate(Vector3.right * (cameraSpeed * Time.fixedDeltaTime));
+        
         RollHorizontally(verticalMovement);
     }
 
