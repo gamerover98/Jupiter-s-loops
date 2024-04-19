@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Prefabs/B1a.prefab.meta
-guid: 966fa039c1239af4ead3a7c9cd7be306
-========
-guid: aebdaa4401d7d134e8f11f2876db5d89
->>>>>>>> refs/heads/develop_biomes:Assets/Prefabs/Biomes/BaseBiome 1.prefab.meta
+guid: a62d9af86419b2441b99fbf84b204a88
 PrefabImporter:
   externalObjects: {}
   userData: 
