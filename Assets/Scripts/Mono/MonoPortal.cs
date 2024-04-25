@@ -26,12 +26,10 @@ namespace Mono
         private void OnTriggerEnter(Collider other)
         {
             if (portalType != PortalType.Entry) return;
-
-            var player = MonoGameManager.Instance!.GetPlayer();
-            var playerTransform = player.transform;
-
             if (!destinationPortal.IsActive()) destinationPortal.SetActive(true);
-            playerTransform.position = destinationPortal.transform.position;
+            
+            var player = MonoGameManager.Instance!.playerManager.GetPlayer();
+            player.Teleport(destinationPortal.transform.position);
         }
 
         public void RequireReset() => SetActive(true);

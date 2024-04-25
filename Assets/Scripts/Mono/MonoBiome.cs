@@ -59,7 +59,7 @@ namespace Mono
             if (firstSpawn)
             {
                 transform.position = biomeSpawnPosition.transform.position;
-                var player = MonoGameManager.Instance.GetPlayer();
+                var player = MonoGameManager.Instance.playerManager.GetPlayer();
                 player.Teleport(playerSpawnPosition.transform.position);
                 player.SetActive(true);
             }

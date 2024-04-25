@@ -1,14 +1,7 @@
-﻿using Api.Entity;
-
-namespace Api.Manager
+﻿namespace Api.Manager
 {
-    public interface IGameManager<out TPlayer, in TVector2> 
-        where TPlayer : IPlayer<TVector2>
+    public interface IGameManager
     {
-        /// <summary>The player instance.</summary>
-        /// <returns>The current player instance</returns>
-        TPlayer GetPlayer();
-
         /// <summary>The game state.</summary>
         /// <returns>The current game state</returns>
         GameState GetGameState();

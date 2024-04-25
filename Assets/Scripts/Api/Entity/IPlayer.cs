@@ -1,7 +1,10 @@
 ﻿namespace Api.Entity
 {
-    public interface IPlayer<in TVector2> : IEntity<TVector2>, ILiving<int>
+    public interface IPlayer<TVector2, out TCamera> : IEntity<TVector2>, ILiving<int>
+        where TCamera : ICamera<TVector2>
     {
-        //TODO: not implemented yet.
+        /// <summary>The player camera</summary>
+        /// <returns>Te player camera instance.</returns>
+        TCamera GetCamera();
     }
 }

@@ -1,26 +1,23 @@
 using System.Linq;
 using Api.Manager;
-using Mono.Entity;
 using UnityEngine;
 
 namespace Mono.Manager
 {
-    public class MonoGameManager : MonoBehaviour, IGameManager<MonoShip, Vector2>
+    public class MonoGameManager : MonoBehaviour, IGameManager
     {
         public static MonoGameManager Instance;
 
-        [SerializeField] private MonoBiomeManager biomeManager;
-
-        [SerializeField] private MonoShip ship;
-        public MonoShip GetPlayer() => ship;
-
+        [SerializeField] internal MonoBiomeManager biomeManager;
+        [SerializeField] internal MonoPlayerManager playerManager;
+        [SerializeField] internal MonoInputManager inputManager;
+        
         private GameState gameState;
         public GameState GetGameState() => gameState;
         
         private void Awake()
         {
             if (Instance == null) Instance = this;
-            ship.SetActive(false);
             gameState = GameState.Loading;
         }
 

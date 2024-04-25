@@ -1,39 +1,84 @@
 ﻿using Api.Collectible;
 using Api.Entity;
+using Mono.Manager;
 using UnityEngine;
 
 namespace Mono.Entity
 {
     [RequireComponent(typeof(Rigidbody), typeof(MeshCollider))]
-    public abstract class MonoPlayer : MonoBehaviour, IPlayer<Vector2>
+    public abstract class MonoPlayer : MonoBehaviour, IPlayer<Vector2, MonoCamera>
     {
+        private const float CameraPaddingXLeft = 0.02F;
+        private const float CameraPaddingXRight = 0.04F;
+        
         [SerializeField] protected int health;
         [SerializeField] protected int maxHealth;
-        [SerializeField] protected Camera mainCamera;
 
-        protected Rigidbody RigidBody { get; private set; }
-        protected float CameraPadding;
+        [SerializeField] protected float maxSpeedY = 6.5F;
+        [SerializeField] protected float accelerationY = 20f;
+        [SerializeField] protected float decelerationY = 15f;
+        [SerializeField] protected float accelerationX = 5f;
+        
+        public Rigidbody RigidBody { get; private set; }
+
+        public MonoCamera GetCamera() => MonoGameManager.Instance!.playerManager.GetCamera();
+        public void SetVelocity(Vector2 velocity) => RigidBody.velocity = velocity;
+        public Vector2 GetVelocity() => RigidBody.velocity;
 
         protected virtual void Awake()
         {
             RigidBody = GetComponent<Rigidbody>();
-            CameraPadding = Mathf.Abs(RigidBody.position.x - mainCamera.transform.position.x);
         }
 
-        protected virtual void Update()
+        protected virtual void FixedUpdate()
         {
-            var cameraTransform = mainCamera.transform;
-            var cameraPosition = cameraTransform.position;
-
-            var targetPosition =
+            var velocity =
                 new Vector3(
-                    gameObject.transform.position.x + CameraPadding,
-                    gameObject.transform.position.y,
-                    cameraPosition.z);
+                    RigidBody.velocity.x,
+                    RigidBody.velocity.y,
+                    RigidBody.velocity.z);
 
-            cameraTransform.position = targetPosition;
+            MoveVertically(ref velocity);
+            MoveHorizontally(ref velocity);
+            RigidBody.velocity = velocity;
         }
-        
+
+        protected virtual void MoveVertically(ref Vector3 velocity)
+        {
+            var verticalThreshold = MonoGameManager.Instance.inputManager.GetVerticalThreshold();
+
+            // Apply deceleration
+            if (Mathf.Approximately(verticalThreshold, 0) && !Mathf.Approximately(velocity.y, 0))
+            {
+                velocity.y =
+                    Mathf.MoveTowards(
+                        velocity.y,
+                        0,
+                        Time.fixedDeltaTime * Mathf.Abs(decelerationY));
+            }
+            else
+            {
+                velocity.y =
+                    Mathf.MoveTowards(
+                        velocity.y,
+                        verticalThreshold * maxSpeedY,
+                        Time.fixedDeltaTime * accelerationY);
+            }
+        }
+
+        protected virtual void MoveHorizontally(ref Vector3 velocity)
+        {
+            var viewportPointPlayerPosition =
+                GetCamera().UnityCamera.WorldToViewportPoint(RigidBody.position);
+            var horizontalThreshold = MonoGameManager.Instance.inputManager.GetHorizontalThreshold();
+            
+            if (viewportPointPlayerPosition.x > CameraPaddingXLeft && horizontalThreshold < 0
+                || viewportPointPlayerPosition.x < 1 - CameraPaddingXRight && horizontalThreshold > 0)
+            {
+                velocity.x += horizontalThreshold * accelerationX;
+            }
+        }
+
         public virtual bool IsActive() => gameObject.activeSelf;
         public virtual void SetActive(bool active) => gameObject.SetActive(active);
 
@@ -57,20 +102,20 @@ namespace Mono.Entity
 
         public virtual void Teleport(Vector2 position)
         {
-            transform.position = position;
-            mainCamera.transform.position =
-                new Vector3(
-                    position.x + CameraPadding,
-                    position.y,
-                    mainCamera.transform.position.z);
+            if (RigidBody != null)
+                RigidBody.position = position;
+            else
+                transform.position = position;
+
+            GetCamera().Teleport(position);
         }
-        
+
         protected virtual void OnTriggerEnter(Collider other)
         {
             if (!other.gameObject.TryGetComponent(out MonoBehaviour monoBehaviour)) return;
             Debug.Log("Ship collision: " + other.gameObject.name);
-            
-            if (monoBehaviour is ICollectible<GameObject> collectible) 
+
+            if (monoBehaviour is ICollectible<GameObject> collectible)
                 collectible.OnCollide(gameObject);
         }
     }

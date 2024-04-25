@@ -12,7 +12,18 @@ namespace Mono.Entity
         {
             transform.position = position;
         }
-        
+
+        public void SetVelocity(Vector2 velocity)
+        {
+            //TODO: must be implemented.
+        }
+
+        public Vector2 GetVelocity()
+        {
+            //TODO: must be implemented.
+            return transform.position;
+        }
+
         public void RequireReset() => SetActive(true);
     }
 }
