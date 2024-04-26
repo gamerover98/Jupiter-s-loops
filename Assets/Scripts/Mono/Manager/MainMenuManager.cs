@@ -1,13 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
+using Api.Manager;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenuManager : MonoBehaviour
+namespace Mono.Manager
 {
-
-    public void StartGame()
+    public class MainMenuManager : MonoBehaviour, IMainMenuManager
     {
-        SceneManager.LoadScene("Scene");
-    } 
+        private const string GameSceneName = "Scene";
+
+        public void StartGame() => SceneManager.LoadScene(GameSceneName);
+    }
 }
