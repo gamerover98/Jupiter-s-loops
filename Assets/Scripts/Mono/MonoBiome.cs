@@ -41,9 +41,14 @@ namespace Mono
 
         public void ResetBiome()
         {
-            foreach (var monoCapsule in capsules) monoCapsule.RequireReset();
-            foreach (var monoMeteor in meteors) monoMeteor.RequireReset();
+            if (capsules != null)
+                foreach (var monoCapsule in capsules)
+                    monoCapsule.RequireReset();
             
+            if (meteors != null)
+                foreach (var monoMeteor in meteors)
+                    monoMeteor.RequireReset();
+
             entryPortal.RequireReset();
             exitPortal.RequireReset();
         }
@@ -67,7 +72,7 @@ namespace Mono
             SetActive(true);
 
             nextBiome.transform.position =
-                nextBiomeSpawnPosition.transform.position 
+                nextBiomeSpawnPosition.transform.position
                 + (nextBiome.transform.position - nextBiome.biomeSpawnPosition.transform.position);
             nextBiome.SetActive(true);
         }
