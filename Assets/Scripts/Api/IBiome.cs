@@ -9,10 +9,10 @@ namespace Api
         out TCapsule,
         out TMeteor,
         out TVector2,
-        out TCollider>
+        out TTrigger>
         where TPortal : IPortal
-        where TCapsule : ICapsule<TCollider>
-        where TMeteor : IMeteor<TVector2>
+        where TCapsule : ICapsule<TTrigger>
+        where TMeteor : IMeteor<TVector2, TTrigger>
     {
         /// <returns>True if the biome is active in the scene.</returns>
         bool IsActive();

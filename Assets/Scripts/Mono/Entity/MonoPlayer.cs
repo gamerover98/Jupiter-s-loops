@@ -1,4 +1,4 @@
-﻿using Api.Collectible;
+﻿using Api.Common;
 using Api.Entity;
 using Mono.Manager;
 using UnityEngine;
@@ -10,7 +10,7 @@ namespace Mono.Entity
     {
         private const float CameraPaddingXLeft = 0.02F;
         private const float CameraPaddingXRight = 0.04F;
-        
+
         [SerializeField] protected int health;
         [SerializeField] protected int maxHealth;
 
@@ -18,7 +18,7 @@ namespace Mono.Entity
         [SerializeField] protected float accelerationY = 20f;
         [SerializeField] protected float decelerationY = 15f;
         [SerializeField] protected float accelerationX = 5f;
-        
+
         public Rigidbody RigidBody { get; private set; }
 
         public MonoCamera GetCamera() => MonoGameManager.Instance!.playerManager.GetCamera();
@@ -71,7 +71,7 @@ namespace Mono.Entity
             var viewportPointPlayerPosition =
                 GetCamera().UnityCamera.WorldToViewportPoint(RigidBody.position);
             var horizontalThreshold = MonoGameManager.Instance.inputManager.GetHorizontalThreshold();
-            
+
             if (viewportPointPlayerPosition.x > CameraPaddingXLeft && horizontalThreshold < 0
                 || viewportPointPlayerPosition.x < 1 - CameraPaddingXRight && horizontalThreshold > 0)
             {
@@ -110,13 +110,24 @@ namespace Mono.Entity
             GetCamera().Teleport(position);
         }
 
+        protected virtual void OnCollisionEnter(Collision collision)
+        {
+            if (!collision.gameObject.TryGetComponent(out MonoBehaviour monoBehaviour)
+                || monoBehaviour is not ICollidable<GameObject, Collision> collidable)
+                return;
+            
+            Debug.Log($"The player enters in collision with: {collision.gameObject.name}");
+            collidable.OnCollide(gameObject, collision);
+        }
+
         protected virtual void OnTriggerEnter(Collider other)
         {
-            if (!other.gameObject.TryGetComponent(out MonoBehaviour monoBehaviour)) return;
-            Debug.Log("Ship collision: " + other.gameObject.name);
+            if (!other.gameObject.TryGetComponent(out MonoBehaviour monoBehaviour)
+                || monoBehaviour is not ITriggerable<GameObject> triggerable)
+                return;
 
-            if (monoBehaviour is ICollectible<GameObject> collectible)
-                collectible.OnCollide(gameObject);
+            Debug.Log("The player has triggered: " + other.gameObject.name);
+            triggerable.OnTrigger(gameObject);
         }
     }
 }

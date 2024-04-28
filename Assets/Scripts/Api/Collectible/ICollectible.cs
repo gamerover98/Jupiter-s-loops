@@ -2,7 +2,7 @@
 
 namespace Api.Collectible
 {
-    public interface ICollectible<in TCollider> : ICollidable<TCollider>, IResettable
+    public interface ICollectible<in TTrigger> : ITriggerable<TTrigger>, IResettable
     {
         // Nothing to do.
     }

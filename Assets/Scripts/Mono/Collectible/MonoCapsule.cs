@@ -11,13 +11,13 @@ namespace Mono.Collectible
         public bool IsActive() => gameObject.activeSelf;
         public void SetActive(bool active) => gameObject.SetActive(active);
 
-        public void OnCollide(GameObject colliderObject)
+        public void OnTrigger(GameObject withObject)
         {
             if (!IsActive()
-                || colliderObject == null)
+                || withObject == null)
                 return;
 
-            if (colliderObject.TryGetComponent(out MonoPlayer monoPlayer))
+            if (withObject.TryGetComponent(out MonoPlayer monoPlayer))
             {
                 //TODO: Add points
             }

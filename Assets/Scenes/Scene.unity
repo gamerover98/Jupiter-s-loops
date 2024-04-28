@@ -913,7 +913,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 407862397138631233, guid: c250bbfde8be0e24cbaff9da566cf49e, type: 3}
       propertyPath: m_Constraints
-      value: 0
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 407862397138631233, guid: c250bbfde8be0e24cbaff9da566cf49e, type: 3}
       propertyPath: m_IsKinematic
@@ -925,7 +925,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6027605458749230993, guid: c250bbfde8be0e24cbaff9da566cf49e, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8312919897328498571, guid: c250bbfde8be0e24cbaff9da566cf49e, type: 3}
       propertyPath: m_LocalPosition.x

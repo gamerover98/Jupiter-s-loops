@@ -90,7 +90,7 @@ namespace Mono.Manager
         {
             if (currentBiomeSettings == null || currentBiomeSettings.GetBiome() == null) return;
             foreach (var monoCapsule in currentBiomeSettings.GetBiome().GetCapsules())
-                monoCapsule.OnCollide(gameObject);
+                monoCapsule.OnTrigger(gameObject);
         }
 
         public IBiomeSettings GetRandomBiomeSettings()

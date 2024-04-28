@@ -10,21 +10,21 @@ namespace Api.Manager
         out TCapsule,
         out TMeteor,
         out TVector2,
-        out TCollider>
-        where TBiome : IBiome<TPortal, TCapsule, TMeteor, TVector2, TCollider>
+        out TTrigger>
+        where TBiome : IBiome<TPortal, TCapsule, TMeteor, TVector2, TTrigger>
         where TPortal : IPortal
-        where TCapsule : ICapsule<TCollider>
-        where TMeteor : IMeteor<TVector2>
+        where TCapsule : ICapsule<TTrigger>
+        where TMeteor : IMeteor<TVector2, TTrigger>
     {
         /// <summary>
         /// The collection of biome settings.
         /// </summary>
         /// <returns>An enumerable collection of biome settings.</returns>
-        public IEnumerable<IBiomeSettings<TBiome, TPortal, TCapsule, TMeteor, TVector2, TCollider>> GetBiomesSettings();
+        public IEnumerable<IBiomeSettings<TBiome, TPortal, TCapsule, TMeteor, TVector2, TTrigger>> GetBiomesSettings();
 
         /// <summary>This is the biome where the player is.</summary>
         /// <returns>The not-null biome instance.</returns>
-        public IBiomeSettings<TBiome, TPortal, TCapsule, TMeteor, TVector2, TCollider> GetCurrentBiome();
+        public IBiomeSettings<TBiome, TPortal, TCapsule, TMeteor, TVector2, TTrigger> GetCurrentBiome();
 
         /// <summary>
         /// The next biome must be a different instance of the current biome.
@@ -36,10 +36,10 @@ namespace Api.Manager
         /// </para>
         /// </summary>
         /// <returns>The not-null biome instance.</returns>
-        public IBiomeSettings<TBiome, TPortal, TCapsule, TMeteor, TVector2, TCollider> GetNextBiome();
+        public IBiomeSettings<TBiome, TPortal, TCapsule, TMeteor, TVector2, TTrigger> GetNextBiome();
 
         /// <returns>A not-null random biome settings.</returns>
-        public IBiomeSettings<TBiome, TPortal, TCapsule, TMeteor, TVector2, TCollider> GetRandomBiomeSettings();
+        public IBiomeSettings<TBiome, TPortal, TCapsule, TMeteor, TVector2, TTrigger> GetRandomBiomeSettings();
     }
 
     public interface IBiomeSettings<
@@ -48,11 +48,11 @@ namespace Api.Manager
         out TCapsule,
         out TMeteor,
         out TVector2,
-        out TCollider>
-        where TBiome : IBiome<TPortal, TCapsule, TMeteor, TVector2, TCollider>
+        out TTrigger>
+        where TBiome : IBiome<TPortal, TCapsule, TMeteor, TVector2, TTrigger>
         where TPortal : IPortal
-        where TCapsule : ICapsule<TCollider>
-        where TMeteor : IMeteor<TVector2>
+        where TCapsule : ICapsule<TTrigger>
+        where TMeteor : IMeteor<TVector2, TTrigger>
     {
         /// <summary>
         /// The biome instance.
