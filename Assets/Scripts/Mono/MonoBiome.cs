@@ -39,6 +39,11 @@ namespace Mono
         public bool IsActive() => gameObject.activeSelf;
         public void SetActive(bool active) => gameObject.SetActive(active);
 
+        protected void Awake()
+        {
+            exitPortal.SetActive(false);
+        }
+
         public void ResetBiome()
         {
             if (capsules != null)

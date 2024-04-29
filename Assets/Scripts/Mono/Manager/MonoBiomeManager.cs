@@ -82,6 +82,7 @@ namespace Mono.Manager
             
             // Disable the entry portal to grant the access to the next biome.
             previousBiomeSettings.GetBiome().GetEntryPortal().SetActive(false);
+            previousBiomeSettings.GetBiome().GetExitPortal().SetActive(false);
             currentBiomeSettings.GetBiome().GetExitPortal().SetActive(false);
         }
 
