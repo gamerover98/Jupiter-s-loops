@@ -13,8 +13,8 @@ namespace Mono.Manager
         [SerializeField] protected MonoCamera gameCamera;
         public MonoCamera GetCamera() => gameCamera;
 
-        [SerializeField] protected float speed = 0.01f;
-        [SerializeField] protected float maxSpeed = 0.1F;
+        [SerializeField] public float speed = 0.01f;
+        [SerializeField] public float maxSpeed = 0.1F;
         [SerializeField] protected float cameraPaddingY = 0.2f;
 
         protected void Awake()

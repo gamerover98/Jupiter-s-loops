@@ -19,6 +19,7 @@ namespace Mono.Entity
 
         private void RollHorizontally()
         {
+            if (!MonoGameManager.Instance.inputManager.Active) return;
             var verticalThreshold = MonoGameManager.Instance.inputManager.GetVerticalThreshold();
 
             var from = transform.rotation;

@@ -1,4 +1,5 @@
-﻿using Api.Manager;
+﻿using System;
+using Api.Manager;
 using UnityEngine;
 
 namespace Mono.Manager
@@ -7,6 +8,8 @@ namespace Mono.Manager
     {
         private const string VerticalAxisName = "Vertical";
         private const string HorizontalAxisName = "Horizontal";
+
+        [NonSerialized] public bool Active;
         
         private float verticalThreshold;
         private float horizontalThreshold;

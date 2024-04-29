@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using Mono.Collectible;
 using Mono.Entity;
 using Mono.Manager;
@@ -49,7 +50,7 @@ namespace Mono
             if (capsules != null)
                 foreach (var monoCapsule in capsules)
                     monoCapsule.RequireReset();
-            
+
             if (meteors != null)
                 foreach (var monoMeteor in meteors)
                     monoMeteor.RequireReset();
@@ -70,8 +71,17 @@ namespace Mono
             {
                 transform.position = biomeSpawnPosition.transform.position;
                 var player = MonoGameManager.Instance.playerManager.GetPlayer();
-                player.Teleport(playerSpawnPosition.transform.position);
+
+                var startingSpace =
+                    MonoGameManager.Instance.startingTimeInSeconds *
+                    MonoGameManager.Instance.playerManager.maxSpeed;
+
+                player.Teleport(
+                    new Vector2(
+                        playerSpawnPosition.transform.position.x - startingSpace,
+                        playerSpawnPosition.transform.position.y));
                 player.SetActive(true);
+                MonoGameManager.Instance.StartCoroutine(StartingCountdown());
             }
 
             SetActive(true);
@@ -80,6 +90,22 @@ namespace Mono
                 nextBiomeSpawnPosition.transform.position
                 + (nextBiome.transform.position - nextBiome.biomeSpawnPosition.transform.position);
             nextBiome.SetActive(true);
+        }
+
+        private static IEnumerator StartingCountdown()
+        {
+            var countdownText = MonoGameManager.Instance.guiMenuManager!.countdownText;
+            var startingTime = MonoGameManager.Instance.startingTimeInSeconds;
+
+            while (startingTime > 0)
+            {
+                countdownText.text = ($"Starting in {startingTime} ...");
+                startingTime--;
+                yield return new WaitForSeconds(1F);
+            }
+            
+            countdownText.gameObject.SetActive(false);
+            MonoGameManager.Instance.inputManager.Active = true;
         }
     }
 }

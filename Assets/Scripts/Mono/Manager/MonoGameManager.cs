@@ -11,6 +11,9 @@ namespace Mono.Manager
         [SerializeField] internal MonoBiomeManager biomeManager;
         [SerializeField] internal MonoPlayerManager playerManager;
         [SerializeField] internal MonoInputManager inputManager;
+        [SerializeField] internal GUIMenuManager guiMenuManager;
+        
+        [SerializeField] public int startingTimeInSeconds = 3;
         
         private GameState gameState;
         public GameState GetGameState() => gameState;
