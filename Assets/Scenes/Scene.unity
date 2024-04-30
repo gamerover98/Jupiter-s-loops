@@ -629,11 +629,13 @@ MonoBehaviour:
   biomesSettings:
   - biome: {fileID: 6381808781282798322, guid: d43adedff5943b7489deb840c837bf27, type: 3}
     weight: 100
+  - biome: {fileID: 6381808781282798322, guid: 3cd13178fb7f2ab478d7ead6817d5481, type: 3}
+    weight: 100
+  - biome: {fileID: 6381808781282798322, guid: 0b4f773a0ec74a444915ef9d984f15ee, type: 3}
+    weight: 100
   - biome: {fileID: 8488075379274701410, guid: 85770eb32699fc34e9f0a93222316a0c, type: 3}
     weight: 100
   - biome: {fileID: 1143465111031801848, guid: 6dade4a4058c92e4b8d33c5373331207, type: 3}
-    weight: 100
-  - biome: {fileID: 865932352579431158, guid: a62d9af86419b2441b99fbf84b204a88, type: 3}
     weight: 100
 --- !u!1 &887395341
 GameObject:
@@ -1274,11 +1276,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2815679863809317338, guid: c250bbfde8be0e24cbaff9da566cf49e, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4579815663376518513, guid: c250bbfde8be0e24cbaff9da566cf49e, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5665833746945636594, guid: c250bbfde8be0e24cbaff9da566cf49e, type: 3}
       propertyPath: m_Enabled
