@@ -372,7 +372,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.45
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -627,11 +627,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   biomesSettings:
-  - biome: {fileID: 865932352579431158, guid: a62d9af86419b2441b99fbf84b204a88, type: 3}
+  - biome: {fileID: 6381808781282798322, guid: d43adedff5943b7489deb840c837bf27, type: 3}
     weight: 100
   - biome: {fileID: 8488075379274701410, guid: 85770eb32699fc34e9f0a93222316a0c, type: 3}
     weight: 100
   - biome: {fileID: 1143465111031801848, guid: 6dade4a4058c92e4b8d33c5373331207, type: 3}
+    weight: 100
+  - biome: {fileID: 865932352579431158, guid: a62d9af86419b2441b99fbf84b204a88, type: 3}
     weight: 100
 --- !u!1 &887395341
 GameObject:
@@ -1269,6 +1271,18 @@ PrefabInstance:
     - target: {fileID: 407862397138631233, guid: c250bbfde8be0e24cbaff9da566cf49e, type: 3}
       propertyPath: m_IsKinematic
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2815679863809317338, guid: c250bbfde8be0e24cbaff9da566cf49e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4579815663376518513, guid: c250bbfde8be0e24cbaff9da566cf49e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5665833746945636594, guid: c250bbfde8be0e24cbaff9da566cf49e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6027605458749230993, guid: c250bbfde8be0e24cbaff9da566cf49e, type: 3}
       propertyPath: m_Convex
