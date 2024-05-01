@@ -8,6 +8,8 @@ namespace Mono.Manager.GameState
         {
             base.Start();
             MonoGameManager.GetInputManager().Active = false;
+            
+            MonoGameManager.GetEventManager().startingCountdownStartEvent?.Invoke();
             MonoGameManager.GetEventManager().startingCountdownEndEvent.AddListener(() => IsEnding = true);
         }
 

@@ -17,6 +17,10 @@ namespace Mono.Manager
         [SerializeField] public float maxSpeed = 0.1F;
         [SerializeField] protected float cameraPaddingY = 0.2f;
 
+        private bool recordingDistance;
+        private float latestPlayerXPosition;
+        private float distance;
+        
         protected void Awake()
         {
             player.SetActive(false);
@@ -25,6 +29,22 @@ namespace Mono.Manager
         protected void Start()
         {
             player.SetActive(true);
+            MonoGameManager.GetEventManager().playingStartEvent.AddListener(() =>
+            {
+                recordingDistance = true;
+                latestPlayerXPosition = player.transform.position.x;
+            });
+        }
+
+        protected void Update()
+        {
+            if (!recordingDistance) return;
+            var playerXPosition = player.transform.position.x;
+            if (playerXPosition < latestPlayerXPosition) return;
+            
+            distance += Mathf.Abs(latestPlayerXPosition - playerXPosition);
+            latestPlayerXPosition = playerXPosition;
+            MonoGameManager.GetGuiMenuManager().UpdateDistanceText(distance);
         }
 
         protected void FixedUpdate()

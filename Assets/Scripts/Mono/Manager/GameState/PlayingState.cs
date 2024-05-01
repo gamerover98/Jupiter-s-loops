@@ -9,6 +9,7 @@ namespace Mono.Manager.GameState
         {
             base.Start();
             IsUpdating = true;
+            MonoGameManager.GetEventManager().playingStartEvent?.Invoke();
         }
 
         public override void Update()
@@ -17,6 +18,12 @@ namespace Mono.Manager.GameState
             
             CheckPlayer();
             CheckLevel();
+        }
+
+        public override void End()
+        {
+            base.End();
+            MonoGameManager.GetEventManager().playingEndEvent?.Invoke();
         }
 
         public override GameStateType? GetNext() => GameStateType.Ending;
