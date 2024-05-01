@@ -25,8 +25,10 @@ namespace Mono.Manager
 {
     public class MonoBiomeManager : MonoBehaviour, IBiomeManager
     {
-        private readonly CustomRandom random = new(1);
+        private CustomRandom random;
 
+        [Tooltip("A number used to calculate a starting value for the pseudo-random number sequence.")]
+        [SerializeField] private int seed;
         [SerializeField] private List<MonoBiomeSettings> biomesSettings;
         public IEnumerable<IBiomeSettings> GetBiomesSettings() => biomesSettings;
 
@@ -40,6 +42,7 @@ namespace Mono.Manager
 
         private void Awake()
         {
+            random = new CustomRandom(seed);
             // spawn and replace the prefab to real game-object instances.
             foreach (var biomeSettings in biomesSettings)
             {
