@@ -70,18 +70,18 @@ namespace Mono
             if (firstSpawn)
             {
                 transform.position = biomeSpawnPosition.transform.position;
-                var player = MonoGameManager.Instance.playerManager.GetPlayer();
+                var player = MonoGameManager.GetPlayerManager().GetPlayer();
 
                 var startingSpace =
-                    MonoGameManager.Instance.startingTimeInSeconds *
-                    MonoGameManager.Instance.playerManager.maxSpeed;
+                    MonoGameManager.instance.startingTimeInSeconds *
+                    MonoGameManager.GetPlayerManager().maxSpeed;
 
                 player.Teleport(
                     new Vector2(
                         playerSpawnPosition.transform.position.x - startingSpace,
                         playerSpawnPosition.transform.position.y));
                 player.SetActive(true);
-                MonoGameManager.Instance.StartCoroutine(StartingCountdown());
+                MonoGameManager.instance.StartCoroutine(StartingCountdown());
             }
 
             SetActive(true);
@@ -94,18 +94,19 @@ namespace Mono
 
         private static IEnumerator StartingCountdown()
         {
-            var countdownText = MonoGameManager.Instance.guiMenuManager!.countdownText;
-            var startingTime = MonoGameManager.Instance.startingTimeInSeconds;
+            var guiManager = MonoGameManager.GetGuiMenuManager();
+            var countdownText = guiManager.countdownText;
+            var startingTime = MonoGameManager.instance.startingTimeInSeconds;
 
             while (startingTime > 0)
             {
-                MonoGameManager.Instance.guiMenuManager!.UpdateCountdownText(startingTime);
+                guiManager.UpdateCountdownText(startingTime);
                 startingTime--;
                 yield return new WaitForSeconds(1F);
             }
-            
+
             countdownText.gameObject.SetActive(false);
-            MonoGameManager.Instance.inputManager.Active = true;
+            MonoGameManager.GetEventManager().startingCountdownEndEvent?.Invoke();
         }
     }
 }

@@ -28,7 +28,7 @@ namespace Mono
             if (portalType != PortalType.Entry) return;
             if (!destinationPortal.IsActive()) destinationPortal.SetActive(true);
             
-            var player = MonoGameManager.Instance!.playerManager.GetPlayer();
+            var player = MonoGameManager.GetPlayerManager().GetPlayer();
             player.Teleport(destinationPortal.transform.position);
         }
 

@@ -1,5 +1,4 @@
-﻿using System;
-using Api.Common;
+﻿using Api.Common;
 using Api.Entity;
 using Mono.Manager;
 using UnityEngine;
@@ -25,7 +24,7 @@ namespace Mono.Entity
 
         private float latestDamageTimeInSeconds;
 
-        public MonoCamera GetCamera() => MonoGameManager.Instance!.playerManager.GetCamera();
+        public MonoCamera GetCamera() => MonoGameManager.GetPlayerManager().GetCamera();
         public void SetVelocity(Vector2 velocity) => RigidBody.velocity = velocity;
         public Vector2 GetVelocity() => RigidBody.velocity;
 
@@ -37,7 +36,7 @@ namespace Mono.Entity
 
         protected virtual void Start()
         {
-            MonoGameManager.Instance.guiMenuManager.UpdateHealth(health);
+            MonoGameManager.GetGuiMenuManager().UpdateHealth(health);
         }
 
         protected virtual void FixedUpdate()
@@ -55,8 +54,8 @@ namespace Mono.Entity
 
         protected virtual void MoveVertically(ref Vector3 velocity)
         {
-            if (!MonoGameManager.Instance.inputManager.Active) return;
-            var verticalThreshold = MonoGameManager.Instance.inputManager.GetVerticalThreshold();
+            if (!MonoGameManager.GetInputManager().Active) return;
+            var verticalThreshold = MonoGameManager.GetInputManager().GetVerticalThreshold();
 
             // Apply deceleration
             if (Mathf.Approximately(verticalThreshold, 0) && !Mathf.Approximately(velocity.y, 0))
@@ -79,11 +78,11 @@ namespace Mono.Entity
 
         protected virtual void MoveHorizontally(ref Vector3 velocity)
         {
-            if (!MonoGameManager.Instance.inputManager.Active) return;
+            if (!MonoGameManager.GetInputManager().Active) return;
 
             var viewportPointPlayerPosition =
                 GetCamera().UnityCamera.WorldToViewportPoint(RigidBody.position);
-            var horizontalThreshold = MonoGameManager.Instance.inputManager.GetHorizontalThreshold();
+            var horizontalThreshold = MonoGameManager.GetInputManager().GetHorizontalThreshold();
 
             if (viewportPointPlayerPosition.x > CameraPaddingXLeft && horizontalThreshold < 0
                 || viewportPointPlayerPosition.x < 1 - CameraPaddingXRight && horizontalThreshold > 0)
@@ -103,7 +102,7 @@ namespace Mono.Entity
             if (value < 0) value = 0;
 
             health = value;
-            MonoGameManager.Instance.guiMenuManager.UpdateHealth(health);
+            MonoGameManager.GetGuiMenuManager().UpdateHealth(health);
         }
 
         public virtual int GetMaxHealth() => maxHealth;

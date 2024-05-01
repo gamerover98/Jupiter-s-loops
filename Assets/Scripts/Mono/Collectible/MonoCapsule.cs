@@ -1,6 +1,5 @@
 ﻿using Api.Collectible;
 using Mono.Entity;
-using Mono.Manager;
 using UnityEngine;
 
 namespace Mono.Collectible
@@ -23,7 +22,6 @@ namespace Mono.Collectible
             }
 
             SetActive(false);
-            MonoGameManager.Instance.CheckLevel();
         }
         
         public void RequireReset() => SetActive(true);
