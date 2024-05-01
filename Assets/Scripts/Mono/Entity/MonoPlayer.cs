@@ -1,4 +1,5 @@
-﻿using Api.Common;
+﻿using System;
+using Api.Common;
 using Api.Entity;
 using Mono.Manager;
 using UnityEngine;
@@ -13,6 +14,7 @@ namespace Mono.Entity
 
         [SerializeField] protected int health;
         [SerializeField] protected int maxHealth;
+        [SerializeField] protected float invincibilityTimeInSeconds = 1.5F;
 
         [SerializeField] protected float maxSpeedY = 6.5F;
         [SerializeField] protected float accelerationY = 20f;
@@ -21,6 +23,8 @@ namespace Mono.Entity
 
         public Rigidbody RigidBody { get; private set; }
 
+        private float latestDamageTimeInSeconds;
+
         public MonoCamera GetCamera() => MonoGameManager.Instance!.playerManager.GetCamera();
         public void SetVelocity(Vector2 velocity) => RigidBody.velocity = velocity;
         public Vector2 GetVelocity() => RigidBody.velocity;
@@ -28,6 +32,12 @@ namespace Mono.Entity
         protected virtual void Awake()
         {
             RigidBody = GetComponent<Rigidbody>();
+            health = GetMaxHealth();
+        }
+
+        protected virtual void Start()
+        {
+            MonoGameManager.Instance.guiMenuManager.UpdateHealth(health);
         }
 
         protected virtual void FixedUpdate()
@@ -70,7 +80,7 @@ namespace Mono.Entity
         protected virtual void MoveHorizontally(ref Vector3 velocity)
         {
             if (!MonoGameManager.Instance.inputManager.Active) return;
-            
+
             var viewportPointPlayerPosition =
                 GetCamera().UnityCamera.WorldToViewportPoint(RigidBody.position);
             var horizontalThreshold = MonoGameManager.Instance.inputManager.GetHorizontalThreshold();
@@ -90,7 +100,10 @@ namespace Mono.Entity
         public virtual void SetHealth(int value)
         {
             if (value > GetMaxHealth()) value = GetMaxHealth();
+            if (value < 0) value = 0;
+
             health = value;
+            MonoGameManager.Instance.guiMenuManager.UpdateHealth(health);
         }
 
         public virtual int GetMaxHealth() => maxHealth;
@@ -113,15 +126,24 @@ namespace Mono.Entity
             GetCamera().Teleport(position);
         }
 
+        public virtual void TryToDoDamage(int damageValue = 1)
+        {
+            if (Time.time - latestDamageTimeInSeconds < invincibilityTimeInSeconds) return;
+            latestDamageTimeInSeconds = Time.time;
+            SetHealth(GetHealth() - damageValue);
+        }
+
         protected virtual void OnCollisionEnter(Collision collision)
         {
             if (!collision.gameObject.TryGetComponent(out MonoBehaviour monoBehaviour)
                 || monoBehaviour is not ICollidable<GameObject, Collision> collidable)
                 return;
-            
+
             Debug.Log($"The player enters in collision with: {collision.gameObject.name}");
             collidable.OnCollide(gameObject, collision);
         }
+
+        protected void OnCollisionStay(Collision collision) => OnCollisionEnter(collision);
 
         protected virtual void OnTriggerEnter(Collider other)
         {

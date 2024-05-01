@@ -99,7 +99,7 @@ namespace Mono
 
             while (startingTime > 0)
             {
-                countdownText.text = ($"Starting in {startingTime} ...");
+                MonoGameManager.Instance.guiMenuManager!.UpdateCountdownText(startingTime);
                 startingTime--;
                 yield return new WaitForSeconds(1F);
             }
