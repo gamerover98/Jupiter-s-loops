@@ -1,5 +1,6 @@
 ﻿using Api.Collectible;
 using Mono.Entity;
+using Mono.Manager;
 using UnityEngine;
 
 namespace Mono.Collectible
@@ -18,6 +19,7 @@ namespace Mono.Collectible
 
             if (withObject.TryGetComponent(out MonoPlayer monoPlayer))
             {
+                MonoGameManager.GetEventManager().capsuleCollisionEvent?.Invoke();
                 //TODO: Add points
             }
 

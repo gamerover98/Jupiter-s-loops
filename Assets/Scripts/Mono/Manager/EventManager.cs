@@ -19,5 +19,11 @@ namespace Mono.Manager
         
         [Tooltip("When the game ends")]
         public UnityEvent playingEndEvent = new();
+
+        [Tooltip("When the player enters in contact with a meteor")]
+        public UnityEvent meteorCollisionEvent = new();
+        
+        [Tooltip("When the player enters in contact with a capsule")]
+        public UnityEvent capsuleCollisionEvent = new();
     }
 }
