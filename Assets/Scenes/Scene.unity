@@ -766,15 +766,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   seed: 1
   biomesSettings:
-  - biome: {fileID: 6381808781282798322, guid: d43adedff5943b7489deb840c837bf27, type: 3}
+  - biome: {fileID: 1143465111031801848, guid: 2b880e0f4abbceb4291c350df23e839a, type: 3}
     weight: 100
-  - biome: {fileID: 6381808781282798322, guid: 3cd13178fb7f2ab478d7ead6817d5481, type: 3}
+  - biome: {fileID: 1143465111031801848, guid: 2b880e0f4abbceb4291c350df23e839a, type: 3}
     weight: 100
-  - biome: {fileID: 6381808781282798322, guid: 0b4f773a0ec74a444915ef9d984f15ee, type: 3}
+  - biome: {fileID: 1143465111031801848, guid: 2b880e0f4abbceb4291c350df23e839a, type: 3}
     weight: 100
-  - biome: {fileID: 8488075379274701410, guid: 85770eb32699fc34e9f0a93222316a0c, type: 3}
+  - biome: {fileID: 1143465111031801848, guid: 2b880e0f4abbceb4291c350df23e839a, type: 3}
     weight: 100
-  - biome: {fileID: 1143465111031801848, guid: 6dade4a4058c92e4b8d33c5373331207, type: 3}
+  - biome: {fileID: 1143465111031801848, guid: 2b880e0f4abbceb4291c350df23e839a, type: 3}
     weight: 100
 --- !u!1 &887395341
 GameObject:
