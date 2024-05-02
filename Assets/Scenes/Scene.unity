@@ -434,7 +434,7 @@ MonoBehaviour:
   player: {fileID: 457377190}
   gameCamera: {fileID: 963194231}
   speed: 0.5
-  maxSpeed: 15.25
+  maxSpeed: 10
   cameraPaddingY: 0.2
 --- !u!4 &260531370
 Transform:
@@ -894,13 +894,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   seed: 1
   biomesSettings:
-  - biome: {fileID: 1143465111031801848, guid: 2b880e0f4abbceb4291c350df23e839a, type: 3}
+  - biome: {fileID: 6381808781282798322, guid: d43adedff5943b7489deb840c837bf27, type: 3}
     weight: 100
-  - biome: {fileID: 1143465111031801848, guid: 2b880e0f4abbceb4291c350df23e839a, type: 3}
+  - biome: {fileID: 6381808781282798322, guid: 3cd13178fb7f2ab478d7ead6817d5481, type: 3}
     weight: 100
-  - biome: {fileID: 1143465111031801848, guid: 2b880e0f4abbceb4291c350df23e839a, type: 3}
+  - biome: {fileID: 6381808781282798322, guid: 0b4f773a0ec74a444915ef9d984f15ee, type: 3}
     weight: 100
-  - biome: {fileID: 1143465111031801848, guid: 2b880e0f4abbceb4291c350df23e839a, type: 3}
+  - biome: {fileID: 8488075379274701410, guid: b6d1832ea49fe8c428076da7334da8a3, type: 3}
     weight: 100
   - biome: {fileID: 1143465111031801848, guid: 2b880e0f4abbceb4291c350df23e839a, type: 3}
     weight: 100
@@ -1504,7 +1504,7 @@ GameObject:
   - component: {fileID: 1646130578}
   - component: {fileID: 1646130577}
   m_Layer: 0
-  m_Name: blur
+  m_Name: BackgroundBlurEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1910,7 +1910,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8596501450809247708, guid: c250bbfde8be0e24cbaff9da566cf49e, type: 3}
       propertyPath: maxSpeedY
-      value: 12.61
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8596501450809247708, guid: c250bbfde8be0e24cbaff9da566cf49e, type: 3}
       propertyPath: rollSpeed
@@ -1926,11 +1926,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8596501450809247708, guid: c250bbfde8be0e24cbaff9da566cf49e, type: 3}
       propertyPath: accelerationY
-      value: 120
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8596501450809247708, guid: c250bbfde8be0e24cbaff9da566cf49e, type: 3}
       propertyPath: decelerationY
-      value: 120
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8596501450809247708, guid: c250bbfde8be0e24cbaff9da566cf49e, type: 3}
       propertyPath: minHorizontalSpeed
