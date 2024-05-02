@@ -1457,7 +1457,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0ef80e189574e31873df171d50379b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingCountdownStartEvent:
+    m_PersistentCalls:
+      m_Calls: []
   startingCountdownEndEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  playingStartEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  playingPauseEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  playingEndEvent:
     m_PersistentCalls:
       m_Calls: []
 --- !u!4 &1914854249
