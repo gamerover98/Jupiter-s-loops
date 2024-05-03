@@ -1,20 +1,27 @@
-﻿using Api.Common;
-using TMPro;
+﻿using Mono.GUI;
 using UnityEngine;
 
 namespace Mono.Manager
 {
     public class GUIMenuManager : MonoBehaviour
     {
-        private const int DistanceMantissaPrecision = 10;
+        public GameGUI gameGUI;
+        public PauseMenu pauseMenu;
 
-        [SerializeField] public TextMeshProUGUI countdownText;
-        [SerializeField] public TextMeshProUGUI healthText;
-        [SerializeField] public TextMeshProUGUI distanceText;
+        private void Start()
+        {
+            MonoInputManager.EscapeKeyPressed += OpenOrClosePauseMenu;
+        }
 
-        public void UpdateCountdownText(int startingTime) => countdownText.text = $"Starting in {startingTime} ...";
-        public void UpdateHealth(int value) => healthText.text = $"Health: {value}";
-        public void UpdateDistanceText(float value) => 
-            distanceText.text = $"Distance: {MathUtil.TrimFloat(value, DistanceMantissaPrecision)}";
+        private void OnDestroy()
+        {
+            MonoInputManager.EscapeKeyPressed -= OpenOrClosePauseMenu;
+        }
+
+        public void OpenOrClosePauseMenu()
+        {
+            pauseMenu.SetActive(!pauseMenu.IsActive());
+            gameGUI.SetActive(!pauseMenu.IsActive());
+        }
     }
 }

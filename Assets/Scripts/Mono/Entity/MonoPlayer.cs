@@ -36,7 +36,7 @@ namespace Mono.Entity
 
         protected virtual void Start()
         {
-            MonoGameManager.GetGuiMenuManager().UpdateHealth(health);
+            MonoGameManager.GetGuiMenuManager().gameGUI.UpdateHealth(health);
         }
 
         protected virtual void FixedUpdate()
@@ -54,7 +54,7 @@ namespace Mono.Entity
 
         protected virtual void MoveVertically(ref Vector3 velocity)
         {
-            if (!MonoGameManager.GetInputManager().Active) return;
+            if (!MonoGameManager.GetInputManager().ActivePlayerMovements) return;
             var verticalThreshold = MonoGameManager.GetInputManager().GetVerticalThreshold();
 
             // Apply deceleration
@@ -78,7 +78,7 @@ namespace Mono.Entity
 
         protected virtual void MoveHorizontally(ref Vector3 velocity)
         {
-            if (!MonoGameManager.GetInputManager().Active) return;
+            if (!MonoGameManager.GetInputManager().ActivePlayerMovements) return;
 
             var viewportPointPlayerPosition =
                 GetCamera().UnityCamera.WorldToViewportPoint(RigidBody.position);
@@ -102,7 +102,7 @@ namespace Mono.Entity
             if (value < 0) value = 0;
 
             health = value;
-            MonoGameManager.GetGuiMenuManager().UpdateHealth(health);
+            MonoGameManager.GetGuiMenuManager().gameGUI.UpdateHealth(health);
         }
 
         public virtual int GetMaxHealth() => maxHealth;
@@ -125,11 +125,12 @@ namespace Mono.Entity
             GetCamera().Teleport(position);
         }
 
-        public virtual void TryToDoDamage(int damageValue = 1)
+        public virtual bool TryToDoDamage(int damageValue = 1)
         {
-            if (Time.time - latestDamageTimeInSeconds < invincibilityTimeInSeconds) return;
+            if (Time.time - latestDamageTimeInSeconds < invincibilityTimeInSeconds) return false;
             latestDamageTimeInSeconds = Time.time;
             SetHealth(GetHealth() - damageValue);
+            return true;
         }
 
         protected virtual void OnCollisionEnter(Collision collision)

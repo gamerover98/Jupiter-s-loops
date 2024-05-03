@@ -1,7 +1,8 @@
 ﻿using System.Linq;
-using Api.Manager;
+using Api;
+using Mono.Manager;
 
-namespace Mono.Manager.GameState
+namespace Mono.GameState
 {
     public class PlayingState : GenericGameState
     {

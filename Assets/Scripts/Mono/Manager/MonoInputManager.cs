@@ -6,21 +6,41 @@ namespace Mono.Manager
 {
     public class MonoInputManager : MonoBehaviour, IInputManager
     {
+        public delegate void EscapeKeyPress();
+
+        public static event EscapeKeyPress EscapeKeyPressed;
+
         private const string VerticalAxisName = "Vertical";
         private const string HorizontalAxisName = "Horizontal";
 
-        [NonSerialized] public bool Active;
-        
+
+        /// <summary>
+        /// Enable or disable vertical and horizontal movements.
+        /// <para>By default its value is false.</para>
+        /// </summary>
+        [NonSerialized] public bool ActivePlayerMovements;
+
         private float verticalThreshold;
         private float horizontalThreshold;
-        
-        public float GetVerticalThreshold() => verticalThreshold;
-        public float GetHorizontalThreshold() => horizontalThreshold;
 
         protected void Update()
         {
             verticalThreshold = Input.GetAxis(VerticalAxisName);
             horizontalThreshold = Input.GetAxis(HorizontalAxisName);
+
+            if (Input.GetKeyDown(KeyCode.Escape)) EscapeKeyPressed?.Invoke();
         }
+
+        /// <summary>
+        /// Returns the value of the vertical axis.
+        /// <para>Value range [-1, +1]</para>
+        /// </summary>
+        public float GetVerticalThreshold() => verticalThreshold;
+
+        /// <summary>
+        /// Returns the value of the horizontal axis.
+        /// <para>Value range [-1, +1]</para>
+        /// </summary>
+        public float GetHorizontalThreshold() => horizontalThreshold;
     }
 }

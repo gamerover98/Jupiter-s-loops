@@ -44,7 +44,7 @@ namespace Mono.Manager
             
             distance += Mathf.Abs(latestPlayerXPosition - playerXPosition);
             latestPlayerXPosition = playerXPosition;
-            MonoGameManager.GetGuiMenuManager().UpdateDistanceText(distance);
+            MonoGameManager.GetGuiMenuManager().gameGUI.UpdateDistanceText(distance);
         }
 
         protected void FixedUpdate()

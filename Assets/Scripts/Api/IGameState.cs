@@ -1,4 +1,4 @@
-﻿namespace Api.Manager
+﻿namespace Api
 {
     public interface IGameState
     {
