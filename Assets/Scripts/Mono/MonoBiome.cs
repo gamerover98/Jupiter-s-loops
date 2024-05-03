@@ -94,13 +94,13 @@ namespace Mono
 
         private static IEnumerator StartingCountdown()
         {
-            var guiManager = MonoGameManager.GetGuiMenuManager();
-            var countdownText = guiManager.countdownText;
+            var gameGUI = MonoGameManager.GetGuiMenuManager().gameGUI;
+            var countdownText = gameGUI.countdownText;
             var startingTime = MonoGameManager.instance.startingTimeInSeconds;
 
             while (startingTime > 0)
             {
-                guiManager.UpdateCountdownText(startingTime);
+                gameGUI.UpdateCountdownText(startingTime);
                 startingTime--;
                 yield return new WaitForSeconds(1F);
             }

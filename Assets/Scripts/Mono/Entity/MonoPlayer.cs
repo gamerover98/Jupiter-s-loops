@@ -36,7 +36,7 @@ namespace Mono.Entity
 
         protected virtual void Start()
         {
-            MonoGameManager.GetGuiMenuManager().UpdateHealth(health);
+            MonoGameManager.GetGuiMenuManager().gameGUI.UpdateHealth(health);
         }
 
         protected virtual void FixedUpdate()
@@ -102,7 +102,7 @@ namespace Mono.Entity
             if (value < 0) value = 0;
 
             health = value;
-            MonoGameManager.GetGuiMenuManager().UpdateHealth(health);
+            MonoGameManager.GetGuiMenuManager().gameGUI.UpdateHealth(health);
         }
 
         public virtual int GetMaxHealth() => maxHealth;
