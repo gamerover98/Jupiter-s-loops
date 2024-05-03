@@ -8,7 +8,7 @@ namespace Mono.GameState
         public override void Start()
         {
             base.Start();
-            MonoGameManager.GetInputManager().Active = false;
+            MonoGameManager.GetInputManager().ActivePlayerMovements = false;
             
             MonoGameManager.GetEventManager().startingCountdownStartEvent?.Invoke();
             MonoGameManager.GetEventManager().startingCountdownEndEvent.AddListener(() => IsEnding = true);
@@ -17,7 +17,7 @@ namespace Mono.GameState
         public override void End()
         {
             base.End();
-            MonoGameManager.GetInputManager().Active = true;
+            MonoGameManager.GetInputManager().ActivePlayerMovements = true;
         }
 
         public override GameStateType? GetNext() => GameStateType.Playing;

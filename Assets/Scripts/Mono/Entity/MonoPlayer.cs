@@ -54,7 +54,7 @@ namespace Mono.Entity
 
         protected virtual void MoveVertically(ref Vector3 velocity)
         {
-            if (!MonoGameManager.GetInputManager().Active) return;
+            if (!MonoGameManager.GetInputManager().ActivePlayerMovements) return;
             var verticalThreshold = MonoGameManager.GetInputManager().GetVerticalThreshold();
 
             // Apply deceleration
@@ -78,7 +78,7 @@ namespace Mono.Entity
 
         protected virtual void MoveHorizontally(ref Vector3 velocity)
         {
-            if (!MonoGameManager.GetInputManager().Active) return;
+            if (!MonoGameManager.GetInputManager().ActivePlayerMovements) return;
 
             var viewportPointPlayerPosition =
                 GetCamera().UnityCamera.WorldToViewportPoint(RigidBody.position);
