@@ -504,7 +504,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.4
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1841,16 +1841,68 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2815679863809317338, guid: c250bbfde8be0e24cbaff9da566cf49e, type: 3}
+      propertyPath: m_Range
+      value: 7.0332136
+      objectReference: {fileID: 0}
+    - target: {fileID: 2815679863809317338, guid: c250bbfde8be0e24cbaff9da566cf49e, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2815679863809317338, guid: c250bbfde8be0e24cbaff9da566cf49e, type: 3}
+      propertyPath: m_Intensity
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2815679863809317338, guid: c250bbfde8be0e24cbaff9da566cf49e, type: 3}
+      propertyPath: m_SpotAngle
+      value: 157.12372
+      objectReference: {fileID: 0}
+    - target: {fileID: 4579815663376518513, guid: c250bbfde8be0e24cbaff9da566cf49e, type: 3}
+      propertyPath: m_Range
+      value: 2.8838298
       objectReference: {fileID: 0}
     - target: {fileID: 4579815663376518513, guid: c250bbfde8be0e24cbaff9da566cf49e, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4579815663376518513, guid: c250bbfde8be0e24cbaff9da566cf49e, type: 3}
+      propertyPath: m_Intensity
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4579815663376518513, guid: c250bbfde8be0e24cbaff9da566cf49e, type: 3}
+      propertyPath: m_SpotAngle
+      value: 113.92992
+      objectReference: {fileID: 0}
+    - target: {fileID: 4579815663376518513, guid: c250bbfde8be0e24cbaff9da566cf49e, type: 3}
+      propertyPath: m_InnerSpotAngle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5665833746945636594, guid: c250bbfde8be0e24cbaff9da566cf49e, type: 3}
+      propertyPath: m_Range
+      value: 3.5921733
+      objectReference: {fileID: 0}
     - target: {fileID: 5665833746945636594, guid: c250bbfde8be0e24cbaff9da566cf49e, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5665833746945636594, guid: c250bbfde8be0e24cbaff9da566cf49e, type: 3}
+      propertyPath: m_Intensity
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5665833746945636594, guid: c250bbfde8be0e24cbaff9da566cf49e, type: 3}
+      propertyPath: m_SpotAngle
+      value: 179
+      objectReference: {fileID: 0}
+    - target: {fileID: 5665833746945636594, guid: c250bbfde8be0e24cbaff9da566cf49e, type: 3}
+      propertyPath: m_InnerSpotAngle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5665833746945636594, guid: c250bbfde8be0e24cbaff9da566cf49e, type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5665833746945636594, guid: c250bbfde8be0e24cbaff9da566cf49e, type: 3}
+      propertyPath: m_Shadows.m_NearPlane
+      value: 1.7397909
       objectReference: {fileID: 0}
     - target: {fileID: 6027605458749230993, guid: c250bbfde8be0e24cbaff9da566cf49e, type: 3}
       propertyPath: m_Convex

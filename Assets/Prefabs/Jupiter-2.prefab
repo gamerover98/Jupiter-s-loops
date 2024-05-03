@@ -165,7 +165,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 0.3663286, b: 0, a: 1}
   m_Intensity: 20
-  m_Range: 1
+  m_Range: 1.0479271
   m_SpotAngle: 166
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -643,18 +643,18 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 6be49d9afab7072408ad2611dedc79b3, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: cfc687c9daedfd04885c748fb037a018, type: 2}
+      objectReference: {fileID: 2100000, guid: f3ff6289bbbc804459703f65ec28d3c6, type: 2}
     - target: {fileID: -7511558181221131132, guid: 6be49d9afab7072408ad2611dedc79b3, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: 70f55e7d91dee624fba1a79913362e4b, type: 2}
+      objectReference: {fileID: 2100000, guid: 0c47ebe7e1bf5bb4c85ec9613ea8ffa6, type: 2}
     - target: {fileID: -7511558181221131132, guid: 6be49d9afab7072408ad2611dedc79b3, type: 3}
       propertyPath: m_Materials.Array.data[2]
       value: 
-      objectReference: {fileID: 2100000, guid: a501c0cbc29e11f428055d2199e90a89, type: 2}
+      objectReference: {fileID: 2100000, guid: 6e958b8588231c545be655db0dca9875, type: 2}
     - target: {fileID: 919132149155446097, guid: 6be49d9afab7072408ad2611dedc79b3, type: 3}
       propertyPath: m_Name
-      value: Ship
+      value: Jupiter-2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3451118302482216456, guid: 6be49d9afab7072408ad2611dedc79b3, type: 3}
@@ -704,6 +704,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 1
   maxHealth: 1
+  invincibilityTimeInSeconds: 1.5
   maxSpeedY: 6.5
   accelerationY: 20
   decelerationY: 15
