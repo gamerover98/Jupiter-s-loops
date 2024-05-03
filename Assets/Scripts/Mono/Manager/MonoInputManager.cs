@@ -6,7 +6,7 @@ namespace Mono.Manager
 {
     public class MonoInputManager : MonoBehaviour, IInputManager
     {
-        public delegate void EscapeKeyPress(KeyCode keyCode);
+        public delegate void EscapeKeyPress();
 
         public static event EscapeKeyPress EscapeKeyPressed;
 
@@ -28,7 +28,7 @@ namespace Mono.Manager
             verticalThreshold = Input.GetAxis(VerticalAxisName);
             horizontalThreshold = Input.GetAxis(HorizontalAxisName);
 
-            if (Input.GetKeyDown(KeyCode.Escape)) EscapeKeyPressed?.Invoke(KeyCode.Escape);
+            if (Input.GetKeyDown(KeyCode.Escape)) EscapeKeyPressed?.Invoke();
         }
 
         /// <summary>

@@ -16,5 +16,8 @@ namespace Mono.GUI
         public void UpdateHealth(int value) => healthText.text = $"Health: {value}";
         public void UpdateDistanceText(float value) => 
             distanceText.text = $"Distance: {MathUtil.TrimFloat(value, DistanceMantissaPrecision)}";
+        
+        public void SetActive(bool active) => gameObject.SetActive(active);
+        public bool IsActive() => gameObject.activeSelf;
     }
 }

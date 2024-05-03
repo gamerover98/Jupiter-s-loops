@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using Api;
 using Mono.GameState;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Mono.Manager
 {
     public class MonoGameManager : MonoBehaviour
     {
+        private const string MainMenuSceneName = "MainMenuScene";
+
         public static MonoGameManager instance;
 
         private static readonly Dictionary<GameStateType, GenericGameState> RegisteredGameStates = new();
@@ -25,10 +28,13 @@ namespace Mono.Manager
         [Tooltip("How many times the game-loop should be updated each second.")]
         public int gameStateTicksPerSeconds = 60;
 
+        private Coroutine updateGameCoroutine;
+
         private void Awake()
         {
             if (instance == null) instance = this;
 
+            RegisteredGameStates.Clear();
             RegisteredGameStates.Add(GameStateType.Starting, new StartingState());
             RegisteredGameStates.Add(GameStateType.Playing, new PlayingState());
             RegisteredGameStates.Add(GameStateType.Ending, new EndingState());
@@ -36,7 +42,12 @@ namespace Mono.Manager
 
         private void Start()
         {
-            StartCoroutine(UpdateGameStateRoutine());
+            updateGameCoroutine = StartCoroutine(UpdateGameStateRoutine());
+        }
+
+        private void OnDestroy()
+        {
+            StopCoroutine(updateGameCoroutine);
         }
 
         private IEnumerator UpdateGameStateRoutine()
@@ -61,6 +72,11 @@ namespace Mono.Manager
             }
 
             yield return null;
+        }
+
+        public void BackToMainMenu()
+        {
+            SceneManager.LoadScene(MainMenuSceneName);
         }
 
         private static GenericGameState GetCurrentGameState() =>

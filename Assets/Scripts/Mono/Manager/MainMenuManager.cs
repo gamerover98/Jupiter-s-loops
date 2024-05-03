@@ -8,6 +8,6 @@ namespace Mono.Manager
     {
         private const string GameSceneName = "Scene";
 
-        public void StartGame() => SceneManager.LoadScene(GameSceneName);
+        public void StartGame() => SceneManager.LoadScene(GameSceneName, LoadSceneMode.Single);
     }
 }

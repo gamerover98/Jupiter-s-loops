@@ -10,10 +10,13 @@ namespace Mono.Manager
 
         private void Start()
         {
-            MonoInputManager.EscapeKeyPressed += StartPauseMenu;
+            MonoInputManager.EscapeKeyPressed += OpenOrClosePauseMenu;
         }
 
-        private void StartPauseMenu(KeyCode keycode) =>
+        public void OpenOrClosePauseMenu()
+        {
             pauseMenu.SetActive(!pauseMenu.IsActive());
+            gameGUI.SetActive(!pauseMenu.IsActive());
+        }
     }
 }
