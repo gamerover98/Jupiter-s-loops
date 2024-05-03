@@ -702,14 +702,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab4139ed195f10d4f8c41cb32bdc0a36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
-  maxHealth: 1
+  health: 3
+  maxHealth: 3
   invincibilityTimeInSeconds: 1.5
-  maxSpeedY: 6.5
-  accelerationY: 20
-  decelerationY: 15
-  accelerationX: 5
-  rollSpeed: 250
+  maxSpeedY: 10
+  accelerationY: 100
+  decelerationY: 100
+  accelerationX: 8
+  rollSpeed: 450
   rollMinDegrees: -45
   rollMaxDegrees: 45
 --- !u!64 &6027605458749230993
@@ -727,7 +727,7 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
@@ -756,8 +756,8 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 120
   m_CollisionDetection: 0
