@@ -13,6 +13,11 @@ namespace Mono.Manager
             MonoInputManager.EscapeKeyPressed += OpenOrClosePauseMenu;
         }
 
+        private void OnDestroy()
+        {
+            MonoInputManager.EscapeKeyPressed -= OpenOrClosePauseMenu;
+        }
+
         public void OpenOrClosePauseMenu()
         {
             pauseMenu.SetActive(!pauseMenu.IsActive());
