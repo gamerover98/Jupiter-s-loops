@@ -125,11 +125,12 @@ namespace Mono.Entity
             GetCamera().Teleport(position);
         }
 
-        public virtual void TryToDoDamage(int damageValue = 1)
+        public virtual bool TryToDoDamage(int damageValue = 1)
         {
-            if (Time.time - latestDamageTimeInSeconds < invincibilityTimeInSeconds) return;
+            if (Time.time - latestDamageTimeInSeconds < invincibilityTimeInSeconds) return false;
             latestDamageTimeInSeconds = Time.time;
             SetHealth(GetHealth() - damageValue);
+            return true;
         }
 
         protected virtual void OnCollisionEnter(Collision collision)

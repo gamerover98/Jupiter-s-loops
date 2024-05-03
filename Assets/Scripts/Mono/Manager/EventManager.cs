@@ -25,5 +25,8 @@ namespace Mono.Manager
         
         [Tooltip("When the player enters in contact with a capsule")]
         public UnityEvent capsuleCollisionEvent = new();
+
+        [Tooltip("When the player enters in contact with a wall")]
+        public UnityEvent wallCollisionEvent = new();
     }
 }

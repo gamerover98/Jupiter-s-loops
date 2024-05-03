@@ -1,5 +1,6 @@
 ﻿using Api;
 using Mono.Entity;
+using Mono.Manager;
 using UnityEngine;
 
 namespace Mono
@@ -12,7 +13,10 @@ namespace Mono
             if (colliderObject == null
                 || !colliderObject.TryGetComponent(out MonoPlayer monoPlayer)) return;
 
-            monoPlayer.TryToDoDamage();
+            if (monoPlayer.TryToDoDamage())
+            {
+                MonoGameManager.GetEventManager().wallCollisionEvent?.Invoke();
+            }
         }
     }
 }
