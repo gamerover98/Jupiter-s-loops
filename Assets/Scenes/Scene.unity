@@ -902,7 +902,7 @@ MonoBehaviour:
     weight: 100
   - biome: {fileID: 8488075379274701410, guid: b6d1832ea49fe8c428076da7334da8a3, type: 3}
     weight: 100
-  - biome: {fileID: 1143465111031801848, guid: 2b880e0f4abbceb4291c350df23e839a, type: 3}
+  - biome: {fileID: 1143465111031801848, guid: 50854c618ace47141861ea1a07dd36db, type: 3}
     weight: 100
 --- !u!1 &887395341
 GameObject:
