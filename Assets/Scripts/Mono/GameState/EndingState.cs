@@ -1,7 +1,7 @@
-﻿using Api.Manager;
+﻿using Api;
 using UnityEngine;
 
-namespace Mono.Manager.GameState
+namespace Mono.GameState
 {
     public class EndingState : GenericGameState
     {

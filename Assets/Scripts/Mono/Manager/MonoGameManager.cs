@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using Api.Manager;
-using Mono.Manager.GameState;
+using Api;
+using Mono.GameState;
 using UnityEngine;
 
 namespace Mono.Manager

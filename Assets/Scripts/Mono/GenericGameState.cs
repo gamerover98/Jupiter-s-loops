@@ -1,6 +1,6 @@
-﻿using Api.Manager;
+﻿using Api;
 
-namespace Mono.Manager.GameState
+namespace Mono
 {
     public abstract class GenericGameState : IGameState
     {
@@ -29,9 +29,7 @@ namespace Mono.Manager.GameState
             IsEnding = true;
         }
 
-        public virtual GameStateType? GetNext()
-        {
+        public virtual GameStateType? GetNext() => 
             throw new System.NotImplementedException();
-        }
     }
 }
