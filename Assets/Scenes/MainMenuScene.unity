@@ -256,6 +256,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 210968541}
   m_CullTransparentMesh: 1
+--- !u!1 &419953146
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 419953147}
+  - component: {fileID: 419953148}
+  m_Layer: 0
+  m_Name: ScoreboardManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &419953147
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 419953146}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &419953148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 419953146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de4d7e60d45b4f1bbe1ddf988a55bc3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &447372846
 GameObject:
   m_ObjectHideFlags: 0
@@ -1283,6 +1327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a07d929ab7844224da221f7aabecb9b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxDistanceText: {fileID: 641432101}
 --- !u!1 &1797670958
 GameObject:
   m_ObjectHideFlags: 0
@@ -1777,3 +1822,4 @@ SceneRoots:
   - {fileID: 1687619717}
   - {fileID: 2043307653}
   - {fileID: 705543210}
+  - {fileID: 419953147}
