@@ -2602,11 +2602,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8596501450809247708, guid: c250bbfde8be0e24cbaff9da566cf49e, type: 3}
       propertyPath: health
-      value: 30
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8596501450809247708, guid: c250bbfde8be0e24cbaff9da566cf49e, type: 3}
       propertyPath: maxHealth
-      value: 30
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8653310677579656497, guid: c250bbfde8be0e24cbaff9da566cf49e, type: 3}
       propertyPath: m_Name
