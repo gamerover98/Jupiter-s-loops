@@ -2437,7 +2437,7 @@ MonoBehaviour:
   playerSpawnPosition: {fileID: 7304085578854928696}
   biomeSpawnPosition: {fileID: 8800813963538416980}
   nextBiomeSpawnPosition: {fileID: 8602531010789519845}
-  entryPortal: {fileID: 0}
+  entryPortal: {fileID: 2445545662772146602}
   exitPortal: {fileID: 6131136203677263620}
   capsules:
   - {fileID: 30091401493642557}
@@ -7232,14 +7232,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3231883057680677981}
     m_Modifications:
-    - target: {fileID: 3712649531992464802, guid: 9d7114676625d634bb2f1b28a857893b, type: 3}
-      propertyPath: portalType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3712649531992464802, guid: 9d7114676625d634bb2f1b28a857893b, type: 3}
-      propertyPath: destinationPortal
-      value: 
-      objectReference: {fileID: 6131136203677263620}
     - target: {fileID: 3867697888683342080, guid: 1d48f9d83fcae1e469bd0e3fb58366d0, type: 3}
       propertyPath: m_Name
       value: Entry
@@ -7304,11 +7296,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 3712649531992464802, guid: 9d7114676625d634bb2f1b28a857893b, type: 3}
+      propertyPath: portalType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3712649531992464802, guid: 9d7114676625d634bb2f1b28a857893b, type: 3}
+      propertyPath: destinationPortal
+      value: 
+      objectReference: {fileID: 6131136203677263620}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d48f9d83fcae1e469bd0e3fb58366d0, type: 3}
+--- !u!114 &2445545662772146602 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4278061664658447762, guid: 1d48f9d83fcae1e469bd0e3fb58366d0, type: 3}
+  m_PrefabInstance: {fileID: 1922729969090899000}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a44c3844ff1241be95d64e3d5f00057c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8752975745703526077 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7194000850718397061, guid: 1d48f9d83fcae1e469bd0e3fb58366d0, type: 3}
