@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 14739304}
   - component: {fileID: 14739303}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: HealthEmpty2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -418,7 +418,7 @@ GameObject:
   - component: {fileID: 351982100}
   - component: {fileID: 351982099}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: Health2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -616,7 +616,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &409984825
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2107,7 +2107,7 @@ GameObject:
   - component: {fileID: 1120456570}
   - component: {fileID: 1120456569}
   m_Layer: 5
-  m_Name: Image (2)
+  m_Name: HealthEmpty3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2697,6 +2697,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   countdownText: {fileID: 663661410}
   healthText: {fileID: 409984826}
+  LifeIcons:
+  - {fileID: 1530164080}
+  - {fileID: 351982097}
+  - {fileID: 1485756887}
   distanceText: {fileID: 1435800127}
 --- !u!1 &1386052160
 GameObject:
@@ -2994,7 +2998,7 @@ GameObject:
   - component: {fileID: 1485756890}
   - component: {fileID: 1485756889}
   m_Layer: 5
-  m_Name: Image (2)
+  m_Name: Health3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3202,7 +3206,7 @@ GameObject:
   - component: {fileID: 1530164083}
   - component: {fileID: 1530164082}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Health1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4028,7 +4032,7 @@ GameObject:
   - component: {fileID: 2016914429}
   - component: {fileID: 2016914428}
   m_Layer: 5
-  m_Name: Image
+  m_Name: HealthEmpty1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
