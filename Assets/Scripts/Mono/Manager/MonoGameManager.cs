@@ -42,6 +42,7 @@ namespace Mono.Manager
 
         private void Start()
         {
+            CurrentGameStateType = GameStateType.Starting;
             updateGameCoroutine = StartCoroutine(UpdateGameStateRoutine());
         }
 
