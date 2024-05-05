@@ -323,9 +323,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 457377190}
   gameCamera: {fileID: 963194231}
-  speed: 0.5
-  maxSpeed: 10
-  cameraPaddingY: 0.2
+  speed: 0.3
+  maxSpeed: 8
+  cameraPaddingY: 0.1
 --- !u!4 &260531370
 Transform:
   m_ObjectHideFlags: 0
@@ -532,6 +532,10 @@ PrefabInstance:
     - target: {fileID: 4033287822461114141, guid: a164e676dbbd6e54587237e619372c98, type: 3}
       propertyPath: looping
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4033287822461114141, guid: a164e676dbbd6e54587237e619372c98, type: 3}
+      propertyPath: lengthInSec
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4033287822461114141, guid: a164e676dbbd6e54587237e619372c98, type: 3}
       propertyPath: playOnAwake
@@ -998,15 +1002,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   seed: 1
   biomesSettings:
-  - biome: {fileID: 6381808781282798322, guid: d43adedff5943b7489deb840c837bf27, type: 3}
-    weight: 100
-  - biome: {fileID: 8488075379274701410, guid: b6d1832ea49fe8c428076da7334da8a3, type: 3}
+  - biome: {fileID: 1143465111031801848, guid: 50854c618ace47141861ea1a07dd36db, type: 3}
     weight: 100
   - biome: {fileID: 1143465111031801848, guid: 50854c618ace47141861ea1a07dd36db, type: 3}
     weight: 100
-  - biome: {fileID: 6381808781282798322, guid: 3cd13178fb7f2ab478d7ead6817d5481, type: 3}
+  - biome: {fileID: 1143465111031801848, guid: 50854c618ace47141861ea1a07dd36db, type: 3}
     weight: 100
-  - biome: {fileID: 8488075379274701410, guid: 8f1384e7732ca784ea3d181e7b6b1b71, type: 3}
+  - biome: {fileID: 1143465111031801848, guid: 50854c618ace47141861ea1a07dd36db, type: 3}
+    weight: 100
+  - biome: {fileID: 1143465111031801848, guid: 50854c618ace47141861ea1a07dd36db, type: 3}
     weight: 100
   - biome: {fileID: 1143465111031801848, guid: 50854c618ace47141861ea1a07dd36db, type: 3}
     weight: 100
@@ -1015,6 +1019,8 @@ MonoBehaviour:
   - biome: {fileID: 8488075379274701410, guid: a6c770e67ebce314fa37c85ace4fcf0c, type: 3}
     weight: 100
   - biome: {fileID: 1143465111031801848, guid: 50854c618ace47141861ea1a07dd36db, type: 3}
+    weight: 100
+  - biome: {fileID: 1143465111031801848, guid: 9388e3400bf0aec4e82ee3b4d917b10d, type: 3}
     weight: 100
 --- !u!1 &784831884
 GameObject:
