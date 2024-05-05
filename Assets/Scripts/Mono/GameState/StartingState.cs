@@ -1,5 +1,6 @@
 ﻿using Api;
 using Mono.Manager;
+using UnityEngine;
 
 namespace Mono.GameState
 {
@@ -8,6 +9,10 @@ namespace Mono.GameState
         public override void Start()
         {
             base.Start();
+            Time.timeScale = 1;
+            
+            MonoGameManager.GetGuiMenuManager().endGameMenu.SetActive(false);
+            MonoGameManager.GetGuiMenuManager().pauseMenu.SetActive(false);
             MonoGameManager.GetInputManager().ActivePlayerMovements = false;
             
             MonoGameManager.GetEventManager().startingCountdownStartEvent?.Invoke();

@@ -19,6 +19,12 @@ namespace Mono.GameState
                     playerManager.Capsules,
                     playerManager.Distance);
 
+            var guiMenuManager = MonoGameManager.GetGuiMenuManager();
+            
+            guiMenuManager.gameGUI.SetActive(false);
+            guiMenuManager.pauseMenu.SetActive(false);
+            guiMenuManager.endGameMenu.SetActive(true);
+            
             IsEnding = true;
         }
 

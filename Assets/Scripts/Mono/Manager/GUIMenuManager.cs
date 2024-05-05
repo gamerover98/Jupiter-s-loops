@@ -7,7 +7,8 @@ namespace Mono.Manager
     {
         public GameGUI gameGUI;
         public PauseMenu pauseMenu;
-
+        public EndGameMenu endGameMenu;
+        
         private void Start()
         {
             MonoInputManager.EscapeKeyPressed += OpenOrClosePauseMenu;
