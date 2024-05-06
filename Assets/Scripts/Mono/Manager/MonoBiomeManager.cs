@@ -95,7 +95,14 @@ namespace Mono.Manager
             previousBiomeSettings.GetBiome().GetExitPortal().SetActive(false);
             currentBiomeSettings.GetBiome().GetExitPortal().SetActive(false);
 
-            MonoGameManager.GetGuiMenuManager().gameGUI.ResetCapsules();
+            var guiMenuManager = MonoGameManager.GetGuiMenuManager();
+            guiMenuManager.gameGUI.ResetCapsules();
+
+            if (!guiMenuManager.tutorialMenu.AdviceAllCapsuleCollectedShown)
+            {
+                guiMenuManager.tutorialMenu.AdviceAllCapsuleCollectedShown = true;
+                guiMenuManager.tutorialMenu.ShowAdviceAllCapsuleCollected();
+            }
         }
 
         [ProButton]
