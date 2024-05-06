@@ -2,6 +2,7 @@
 using Api.Manager;
 using Mono.Entity;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Mono.Manager
 {
@@ -19,7 +20,9 @@ namespace Mono.Manager
 
         private bool recordingDistance;
         private float latestPlayerXPosition;
-        private float distance;
+        
+        [NonSerialized] public int Capsules;
+        [NonSerialized] public float Distance;
         
         protected void Awake()
         {
@@ -42,9 +45,9 @@ namespace Mono.Manager
             var playerXPosition = player.transform.position.x;
             if (playerXPosition < latestPlayerXPosition) return;
             
-            distance += Mathf.Abs(latestPlayerXPosition - playerXPosition);
+            Distance += Mathf.Abs(latestPlayerXPosition - playerXPosition);
             latestPlayerXPosition = playerXPosition;
-            MonoGameManager.GetGuiMenuManager().gameGUI.UpdateDistanceText(distance);
+            MonoGameManager.GetGuiMenuManager().gameGUI.UpdateDistanceText(Distance);
         }
 
         protected void FixedUpdate()

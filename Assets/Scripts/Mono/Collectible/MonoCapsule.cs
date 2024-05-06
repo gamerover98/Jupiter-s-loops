@@ -20,7 +20,7 @@ namespace Mono.Collectible
             if (withObject.TryGetComponent(out MonoPlayer monoPlayer))
             {
                 MonoGameManager.GetEventManager().capsuleCollisionEvent?.Invoke();
-                //TODO: Add points
+                MonoGameManager.GetPlayerManager().Capsules++;
             }
 
             SetActive(false);
