@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Mono.Collectible;
 using Mono.Entity;
 using Mono.Manager;
@@ -31,21 +32,33 @@ namespace Mono
         [SerializeField] private MonoPortal exitPortal;
         public MonoPortal GetExitPortal() => exitPortal;
 
-        [SerializeField] private List<MonoCapsule> capsules = new();
+        private List<MonoCapsule> capsules = new();
         public IEnumerable<MonoCapsule> GetCapsules() => capsules;
 
-        [SerializeField] private List<MonoMeteor> meteors = new();
+        private List<MonoMeteor> meteors = new();
         public IEnumerable<MonoMeteor> GetMeteors() => meteors;
 
         public bool IsActive() => gameObject.activeSelf;
         public void SetActive(bool active) => gameObject.SetActive(active);
 
-        protected void Awake()
+        protected virtual void Awake()
         {
             exitPortal.SetActive(false);
         }
 
-        public void ResetBiome()
+        protected virtual void Start()
+        {
+            capsules =
+                transform
+                    .GetComponentsInChildren<MonoCapsule>(true)
+                    .ToList();
+            meteors =
+                transform
+                    .GetComponentsInChildren<MonoMeteor>(true)
+                    .ToList();
+        }
+
+        public virtual void ResetBiome()
         {
             if (capsules != null)
                 foreach (var monoCapsule in capsules)

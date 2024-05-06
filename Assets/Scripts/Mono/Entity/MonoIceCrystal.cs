@@ -1,13 +1,16 @@
 ﻿using Api.Entity;
+using Mono.Manager;
 using UnityEngine;
 
 namespace Mono.Entity
 {
-    public class MonoIceCrystal : MonoBehaviour, IIceCrystal<Vector2>
+    public class MonoIceCrystal : MonoBehaviour, IIceCrystal<Vector2, GameObject>
     {
+        [SerializeField] private int damage = 1;
+
         public bool IsActive() => gameObject.activeSelf;
         public void SetActive(bool active) => gameObject.SetActive(active);
-        
+
         public void Teleport(Vector2 position)
         {
             transform.position = position;
@@ -22,6 +25,21 @@ namespace Mono.Entity
         {
             //TODO: must be implemented.
             return transform.position;
+        }
+
+        public void OnTrigger(GameObject withObject)
+        {
+            if (!IsActive()
+                || withObject == null)
+                return;
+
+            if (withObject.TryGetComponent(out MonoPlayer monoPlayer))
+            {
+                MonoGameManager.GetEventManager().iceCrystalCollisionEvent?.Invoke();
+                monoPlayer.TryToDoDamage(damage);
+            }
+
+            SetActive(false);
         }
 
         public void RequireReset() => SetActive(true);
