@@ -2278,6 +2278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59abe699e87c449eae4a3c4ba8166e3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  randomSeed: 1
   seed: 1
   biomesSettings:
   - biome: {fileID: 5951213134234290708, guid: 50854c618ace47141861ea1a07dd36db, type: 3}

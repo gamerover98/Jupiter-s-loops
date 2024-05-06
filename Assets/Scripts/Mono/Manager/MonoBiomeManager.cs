@@ -27,8 +27,11 @@ namespace Mono.Manager
     {
         private CustomRandom random;
 
-        [Tooltip("A number used to calculate a starting value for the pseudo-random number sequence.")]
-        [SerializeField] private int seed;
+        [SerializeField] private bool randomSeed;
+
+        [Tooltip("A number used to calculate a starting value for the pseudo-random number sequence.")] [SerializeField]
+        private int seed;
+
         [SerializeField] private List<MonoBiomeSettings> biomesSettings;
         public IEnumerable<IBiomeSettings> GetBiomesSettings() => biomesSettings;
 
@@ -42,7 +45,11 @@ namespace Mono.Manager
 
         private void Awake()
         {
-            random = new CustomRandom(seed);
+            random =
+                randomSeed
+                    ? new CustomRandom()
+                    : new CustomRandom(seed);
+
             // spawn and replace the prefab to real game-object instances.
             foreach (var biomeSettings in biomesSettings)
             {
@@ -77,17 +84,17 @@ namespace Mono.Manager
         {
             toBeRemoved?.Despawn();
             toBeRemoved = previousBiomeSettings?.GetBiome();
-            
+
             previousBiomeSettings = currentBiomeSettings;
             currentBiomeSettings = nextBiomeSettings;
             nextBiomeSettings = GetRandomBiomeSettings() as MonoBiomeSettings;
             currentBiomeSettings.GetBiome().SpawnNext(nextBiomeSettings!.GetBiome(), false);
-            
+
             // Disable the entry portal to grant the access to the next biome.
             previousBiomeSettings.GetBiome().GetEntryPortal().SetActive(false);
             previousBiomeSettings.GetBiome().GetExitPortal().SetActive(false);
             currentBiomeSettings.GetBiome().GetExitPortal().SetActive(false);
-            
+
             MonoGameManager.GetGuiMenuManager().gameGUI.ResetCapsules();
         }
 
