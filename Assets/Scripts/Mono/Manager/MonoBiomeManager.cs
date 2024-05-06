@@ -87,6 +87,8 @@ namespace Mono.Manager
             previousBiomeSettings.GetBiome().GetEntryPortal().SetActive(false);
             previousBiomeSettings.GetBiome().GetExitPortal().SetActive(false);
             currentBiomeSettings.GetBiome().GetExitPortal().SetActive(false);
+            
+            MonoGameManager.GetGuiMenuManager().gameGUI.ResetCapsules();
         }
 
         [ProButton]
