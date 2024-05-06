@@ -24,5 +24,6 @@ namespace Mono.Manager
         }
 
         public void StartGame() => SceneManager.LoadScene(GameSceneName, LoadSceneMode.Single);
+        public void QuitGame() => Application.Quit();
     }
 }
