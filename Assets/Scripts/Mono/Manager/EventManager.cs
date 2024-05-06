@@ -31,5 +31,8 @@ namespace Mono.Manager
 
         [Tooltip("When the player enters in contact with a wall")]
         public UnityEvent wallCollisionEvent = new();
+        
+        [Tooltip("When the player pass through the entry portal")]
+        public UnityEvent portalEvent = new();
     }
 }

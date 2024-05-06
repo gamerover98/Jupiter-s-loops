@@ -30,6 +30,7 @@ namespace Mono
             
             var player = MonoGameManager.GetPlayerManager().GetPlayer();
             player.Teleport(destinationPortal.transform.position);
+            MonoGameManager.GetEventManager().portalEvent?.Invoke();
         }
 
         public void RequireReset() => SetActive(true);
