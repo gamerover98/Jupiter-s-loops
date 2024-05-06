@@ -12,6 +12,7 @@ namespace Mono.Manager
         private const string MainMenuSceneName = "MainMenuScene";
 
         public static MonoGameManager instance;
+        public static bool IsFirstGame = true;
 
         private static readonly Dictionary<GameStateType, GenericGameState> RegisteredGameStates = new();
         public static GameStateType CurrentGameStateType { get; private set; } = GameStateType.Starting;

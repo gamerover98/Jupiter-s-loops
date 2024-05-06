@@ -2,7 +2,6 @@
 using Api.Manager;
 using Mono.Entity;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Mono.Manager
 {

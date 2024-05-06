@@ -8,7 +8,8 @@ namespace Mono.Manager
         public GameGUI gameGUI;
         public PauseMenu pauseMenu;
         public EndGameMenu endGameMenu;
-        
+        public TutorialMenu tutorialMenu;
+
         private void Start()
         {
             MonoInputManager.EscapeKeyPressed += OpenOrClosePauseMenu;
@@ -21,8 +22,11 @@ namespace Mono.Manager
 
         public void OpenOrClosePauseMenu()
         {
+            if (tutorialMenu.IsNotCollectAllCapsulesActive()) return;
+                
             pauseMenu.SetActive(!pauseMenu.IsActive());
             gameGUI.SetActive(!pauseMenu.IsActive());
+            tutorialMenu.SetActive(gameGUI.IsActive());
         }
     }
 }

@@ -19,13 +19,24 @@ namespace Mono.Collectible
 
             if (withObject.TryGetComponent(out MonoPlayer monoPlayer))
             {
-                MonoGameManager.GetEventManager().capsuleCollisionEvent?.Invoke();
-                MonoGameManager.GetPlayerManager().Capsules++;
+                MonoGameManager
+                    .GetEventManager()
+                    .capsuleCollisionEvent?
+                    .Invoke();
+
+                MonoGameManager
+                    .GetPlayerManager()
+                    .Capsules++;
+                
+                MonoGameManager
+                    .GetGuiMenuManager()
+                    .gameGUI
+                    .UpdateCapsule();
             }
 
             SetActive(false);
         }
-        
+
         public void RequireReset() => SetActive(true);
     }
 }
