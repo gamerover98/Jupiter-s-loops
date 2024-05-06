@@ -23,6 +23,10 @@ namespace Mono.Collectible
                     .GetEventManager()
                     .capsuleCollisionEvent?
                     .Invoke();
+
+                MonoGameManager
+                    .GetPlayerManager()
+                    .Capsules++;
                 
                 MonoGameManager
                     .GetGuiMenuManager()

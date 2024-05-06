@@ -11,6 +11,14 @@ namespace Mono.GameState
             base.Start();
             IsUpdating = true;
             MonoGameManager.GetEventManager().playingStartEvent?.Invoke();
+
+            if (MonoGameManager.IsFirstGame)
+            {
+                MonoGameManager
+                    .GetGuiMenuManager()
+                    .tutorialMenu
+                    .ShowCommandsSuggestions();
+            }
         }
 
         public override void Update()

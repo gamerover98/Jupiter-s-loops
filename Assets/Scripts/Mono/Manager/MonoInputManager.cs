@@ -8,7 +8,10 @@ namespace Mono.Manager
     {
         public delegate void EscapeKeyPress();
 
+        public delegate void SpaceKeyPress();
+
         public static event EscapeKeyPress EscapeKeyPressed;
+        public static event SpaceKeyPress SpaceKeyPressed;
 
         private const string VerticalAxisName = "Vertical";
         private const string HorizontalAxisName = "Horizontal";
@@ -29,6 +32,7 @@ namespace Mono.Manager
             horizontalThreshold = Input.GetAxis(HorizontalAxisName);
 
             if (Input.GetKeyDown(KeyCode.Escape)) EscapeKeyPressed?.Invoke();
+            if (Input.GetKeyDown(KeyCode.Space)) SpaceKeyPressed?.Invoke();
         }
 
         /// <summary>

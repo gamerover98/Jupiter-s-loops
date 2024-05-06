@@ -32,6 +32,7 @@ namespace Mono.GUI
         protected void OnDisable()
         {
             MonoGameManager.instance.BackToMainMenu();
+            MonoGameManager.IsFirstGame = false;
         }
 
         public void SetActive(bool active) => gameObject.SetActive(active);
