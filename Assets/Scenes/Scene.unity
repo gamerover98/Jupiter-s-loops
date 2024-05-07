@@ -2309,7 +2309,7 @@ MonoBehaviour:
     weight: 100
   - biome: {fileID: 8488075379274701410, guid: b6d1832ea49fe8c428076da7334da8a3, type: 3}
     weight: 100
-  - biome: {fileID: 5951213134234290708, guid: 50854c618ace47141861ea1a07dd36db, type: 3}
+  - biome: {fileID: 4293503867687281836, guid: 9388e3400bf0aec4e82ee3b4d917b10d, type: 3}
     weight: 100
   - biome: {fileID: 6381808781282798322, guid: 3cd13178fb7f2ab478d7ead6817d5481, type: 3}
     weight: 100
