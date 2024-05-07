@@ -96,6 +96,9 @@ namespace Mono.Manager
             currentBiomeSettings.GetBiome().GetExitPortal().SetActive(false);
 
             var guiMenuManager = MonoGameManager.GetGuiMenuManager();
+            var player = MonoGameManager.GetPlayerManager().GetPlayer();
+            
+            player.SetHealth(player.GetHealth() + 1);
             guiMenuManager.gameGUI.ResetCapsules();
 
             if (!guiMenuManager.tutorialMenu.AdviceAllCapsuleCollectedShown)
