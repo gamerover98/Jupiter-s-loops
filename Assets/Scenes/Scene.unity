@@ -3212,9 +3212,9 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 5
-  m_Range: 3.79
+  m_Range: 2
   m_SpotAngle: 179
-  m_InnerSpotAngle: 66.07001
+  m_InnerSpotAngle: 52.859276
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -4219,7 +4219,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 5
-  m_Range: 3.79
+  m_Range: 2
   m_SpotAngle: 179
   m_InnerSpotAngle: 66.07001
   m_CookieSize: 10
@@ -8235,7 +8235,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2815679863809317338, guid: c250bbfde8be0e24cbaff9da566cf49e, type: 3}
       propertyPath: m_Intensity
-      value: 100
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2815679863809317338, guid: c250bbfde8be0e24cbaff9da566cf49e, type: 3}
       propertyPath: m_SpotAngle
@@ -8263,7 +8263,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5665833746945636594, guid: c250bbfde8be0e24cbaff9da566cf49e, type: 3}
       propertyPath: m_Intensity
-      value: 50
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5665833746945636594, guid: c250bbfde8be0e24cbaff9da566cf49e, type: 3}
       propertyPath: m_SpotAngle
