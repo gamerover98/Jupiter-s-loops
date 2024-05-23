@@ -1,5 +1,5 @@
 # JUPITER LOOPS (a Dusk Studios game)
-### This is a project made for the second course level at Digital Bros Games Academy
+### This is a project made by students from the second level course at Digital Bros Games Academy
 
 GAME BIO:
 "Jupiter Loops" is a 3D, side-scrolling, endless runner game developed in Unity for PC systems in which the player takes control of a spaceship called "Jupiter-2." The story revolves around this spaceship which, following the last unsuccessful reconnaissance expedition, namely that of Jupiter-1, becomes trapped in a series of infinite loops caused by an unknown cosmic entity; the only chance to break the circle of loops is to collect, at once, all the crew members missing from the previous expedition and cross the last dimensional portal that will get them out of this continuous loop. 
